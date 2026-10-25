@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Art | dtritgamedev</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="background-container">
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+    <div class="background-overlay">
+      <h1>Daniel Tritasavit</h1>
+      <h2>Tech Art</h2>
+    </div>
+    <div class="down-arrow">↓</div>
+  </div>
+
+  <main>
+    <h2>Tech Art</h2>
+    <p>For all of my games and films, I've built custom shaders, materials, and tools in Unreal Engine. Here are some of my favorites.</p>
+
+    <div class="game-section boabf-section">
+      <h3>Blood on a Bird's Foot (새발의피)</h3>
+      <p class="boabf-intro">Blood on a Bird's Foot is a short film made with Blender and Unreal Engine in collaboration with 8k Productions. I built custom materials and shaders for a unique comic book-like aesthetic.</p>
+
+      <div class="boabf-top">
+        <img class="boabf-laurel" src="Images/Laurel1.png" alt="Festival laurel">
+        <div class="boabf-trailer">
+          <iframe
+            src="https://www.youtube.com/embed/OVAvkVXA-c0?si=lvhAT5IqveY0Ac80"
+            title="Blood on a Bird's Foot (새발의피) Trailer"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
+        <img class="boabf-laurel" src="Images/Laurel2.png" alt="Festival laurel">
+      </div>
+
+      <div class="boabf-wrap boabf-wrap-face">
+        <img class="boabf-face" src="Images/Art/BOABFFAce.png" alt="Character look-dev still">
+        <p>Blood on a Bird's Foot deals with intense social topics such as nuclear war and police brutality.
+        As lead tech artist, I was faced with the challenge of creating stylized visuals that fit the tone and themes of the film.
+        I settled on a mix of cel shading and a high-contrast monotone color scheme.
+        Using the custom depth pass, I isolated organic components like skin, hair, and eyes, and applied cel shading and a custom LUT.
+        This separated the main character from the background, emphasizing the themes of isolation.
+        The environment visuals were fine-tuned with a combination of chromatic aberration, bloom, and fog.
+        Together these elements provided a comic book-esque visual that set an atmosphere consistent with the serious subject matter.</p>
+      </div>
+
+      <div class="boabf-wrap boabf-wrap-stills">
+        <img src="Images/Art/BOABFBodies.png" alt="Riot scene still">
+        <img src="Images/Art/BOABFhumvee.png" alt="Vehicle still">
+      </div>
+    </div>
+
+    <div class="game-section">
+      <h3>Ink Painting Shader</h3>
+      <div class="tech-art-image">
+        <img src="Images/Art/Watercolor.png" alt="Ink painting shader render">
+      </div>
+      <p>For my latest game I've been working on an ink painting shader.
+        It uses a variety of techniques to give the world a painted look.
+        The material of each object uses a local-space aligned repeating paint texture I created in GIMP.
+        For skeletal meshes, the UVs use pre-skinned local-space so the mesh can deform without warping the texture.
+        The material also uses two layers of cel shading, one for shadows and one for highlights, and a fresnel node multiplied with the painted texture gives the "erosion" effect around the edges.
+        Lastly, I made a post-process material consisting of an HLSL outline shader multiplied with a scrolling noise texture to create ink strokes of varying thickness.
+      </p>
+    </div>
+
+    <div class="game-section">
+      <h3>Found Footage Horror Post Process</h3>
+      <div class="tech-art-pair">
+        <img src="Images/Art/InnerDemonsWide.jpg" alt="The Inner Demons found footage look">
+        <img src="Images/Art/InnerDemons2.jpg" alt="The Inner Demons second scene with the found footage post process">
+      </div>
+      <p>For my cinematic horror game The Inner Demons, I created a found footage post process material.
+        This shader was more of a color grading exercise than a technical shader, but it taught me
+        a lot about the Unreal camera system.
+        A mix of value manipulation through LUTs, film grain, and chromatic aberration gave the perfect blend for a creepy old school found footage movie.
+      </p>
+    </div>
+
+    <div class="game-section">
+      <h3>Stylized Mind-Bending Geometry</h3>
+      <div class="tech-art-pair">
+        <img src="Images/Art/Reflection.jpg" alt="Mirrored retroreflective space in The Reflection">
+        <img src="Images/Art/Reflection2.jpg" alt="Second view of the reflected geometry in The Reflection">
+      </div>
+      <p>The Reflection was my first Steam release and explores impossible retroreflective geometry.
+        Creating levels for this game required dynamic mesh slicing to create a convincing reflection that the player can travel through.
+        An HLSL outline shader, stylized water material, and vibrant colors create a surreal environment that complements the mind-bending gameplay.
+      </p>
+    </div>
+
+    <div class="game-section">
+      <h3>Foliage and Grass</h3>
+      <div class="tech-art-image">
+        <img src="Images/Art/BrokenPeacesChina.png" alt="Broken Peaces China scene">
+      </div>
+      <p>For Broken Peaces, I worked with our team's 3D artist to build a city retaken by nature.
+        Using Blender geometry nodes, we built foliage in a noise pattern around the surface of the ruined skyscrapers.
+        I also used Unreal's foliage system to render thousands of blades of grass along the landscape.</p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
