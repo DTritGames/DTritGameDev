@@ -29,7 +29,7 @@
         'Images/Art/InnerDemons2.jpg',
         'Images/Art/Reflection.jpg',
         'Images/Art/Reflection2.jpg',
-        'Images/Art/BrokenPeacesChina.png'
+        'Images/Art/BrokenPeacesChina.png',
         'Images/refheader.jpg',
         'Images/InnerHeader.jpg',
         'Images/IDHeader.jpg',
