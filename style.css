@@ -514,3 +514,19 @@ p {
         margin-top: 36px;
     }
 }
+
+/* ---------- Lines above and below the Large / Small Projects titles ---------- */
+.section-title {
+    max-width: 1000px;
+    margin: 80px auto 40px auto;
+    padding: 24px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+    .section-title {
+        margin: 50px auto 30px auto;
+        padding: 16px 0;
+    }
+}
