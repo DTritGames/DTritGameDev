@@ -3,41 +3,164 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tech Art | dtritgamedev</title>
+  <title>dtritgamedev</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* TEMP FIX: Inline styles to ensure iframe spacing issue is resolved */
+    .steam-embed {
+      margin: 0 auto 30px auto;
+      max-width: 600px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .steam-embed iframe {
+      display: block;
+      vertical-align: top;
+      margin: 0;
+      padding: 0;
+      line-height: 0;
+      width: 100%;
+      height: 190px;
+      border: none;
+      border-radius: 15px;
+    }
+
+    .video-container {
+      position: relative;
+      width: 90%;               /* responsive width */
+      max-width: 720px;         /* reasonable desktop limit */
+      margin: 0 auto 2rem auto; /* center + spacing below */
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.45);
+      aspect-ratio: 16 / 9;
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    .video-container.in-view {
+      opacity: 1;
+      transform: none;
+    }
+  </style>
 </head>
 <body>
   <div class="background-container">
     <canvas id="particle-canvas" aria-hidden="true"></canvas>
     <div class="background-overlay">
       <h1>Daniel Tritasavit</h1>
-      <h2>Tech Art</h2>
+      <h2>Game Development</h2>
     </div>
     <div class="down-arrow">↓</div>
   </div>
 
   <main>
-    <h2>Tech Art</h2>
-    <p>For all of my games and films, I've built custom shaders, materials, and tools in Unreal Engine. Here are some of my favorites.</p>
+    <h2>Who am I?</h2>
+    <p>My name is Daniel Tritasavit and I'm a 20-year-old solo developer. I've been developing games with Unreal Engine since I was 13 and I've been hooked ever since.</p>
 
-    <div class="game-section boabf-section">
-      <h3>Blood on a Bird's Foot (새발의피)</h3>
-      <p class="boabf-intro">Blood on a Bird's Foot is a short film made with Blender and Unreal Engine in collaboration with 8k Productions. I built custom materials and shaders for a unique comic book-like aesthetic.</p>
+    <!-- Demo Reel Section -->
+    <h2>Demo Reel:</h2>
+    <div class="video-container in-view">
+      <iframe
+        src="https://www.youtube.com/embed/lc2y1Ep06K4?si=9OqEPPZvyGFoApN9"
+        title="Demo Reel - Daniel Tritasavit"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
 
-      <div class="boabf-top">
-        <img class="boabf-laurel" src="Images/Laurel1.png" alt="Festival laurel">
-        <div class="boabf-trailer">
-          <iframe
-            src="https://www.youtube.com/embed/OVAvkVXA-c0?si=lvhAT5IqveY0Ac80"
-            title="Blood on a Bird's Foot (새발의피) Trailer"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <img class="boabf-laurel" src="Images/Laurel2.png" alt="Festival laurel">
+    <h2 class="section-title">Large Projects</h2>
+
+    <!-- Game 1: Node Strike -->
+    <div class="game-section">
+      <h3>Node Strike (19 Years Old)</h3>
+      <div style="margin: 20px;">
+        <iframe
+          width="320"
+          height="180"
+          src="https://www.youtube.com/embed/T4BDZkkZMqg"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
       </div>
 
+      <div class="steam-embed">
+        <iframe
+          src="https://store.steampowered.com/widget/3639030/"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p>For Node Strike, I developed a procedural puzzle generation algorithm. I wanted to make a game with infinite replayability and time pressure to solve puzzles. This required inventing a brand new type of puzzle and an algorithm to generate them. The game is about 3 hours long with 22 levels, 5 bosses, and 12 puzzle types.</p>
+
+      <h4 class="tech-art-heading">Writing a Procedural Puzzle Generator</h4>
+      <div class="tech-art-pair">
+        <img src="Images/ss_208717b5d3a6d49df2d1f5bbebadf7b378838522.600x338.jpg" alt="Node Strike puzzle">
+        <img src="Images/ss_f3785ff745936edecf7b8b2012fa5a2332266298.600x338.jpg" alt="Node Strike puzzle during combat">
+      </div>
+      <p>Using graph theory, I built a unique puzzle-combat system that tests the player’s ability to think critically under pressure.
+        To solve a puzzle, the player must find the correct order to destroy every node such that the next node they destroy is in the direction indicated by the symbol.
+        During gameplay the player must dodge attacks while solving the puzzle in their head.
+        Once they think they have the solution, they can jump in and try it out.
+        The algorithm that generates these puzzles begins with the solution, the last node destroyed, and then iteratively fills in the puzzle backwards, ensuring that puzzles are always solvable.
+      </p>
+    </div>
+
+    <!-- Game 2: Blood on a Bird's Foot -->
+    <div class="game-section boabf-section">
+      <h3>Blood on a Bird's Foot (새발의피) (20 Years Old)</h3>
+      <p>Blood on a Bird's Foot is a short film animated using Blender and Unreal Engine in collaboration with 8k Productions.</p>
+      <div class="image-container">
+        <img src="Images/Laurel1.png" alt="Festival laurel">
+        <img src="Images/Laurel2.png" alt="Festival laurel">
+      </div>
+
+      <style>
+        .image-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 15px;
+          margin: 20px auto;
+        }
+
+        .image-container img {
+          width: 250px;
+          max-width: 40%;
+          height: auto;
+        }
+      </style>
+
+      <div class="video-container in-view">
+        <iframe
+          src="https://www.youtube.com/embed/OVAvkVXA-c0?si=lvhAT5IqveY0Ac80"
+          title="Blood on a Bird's Foot (새발의피) Trailer"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <p>For Blood on a Bird's Foot, I explored social injustice in South Korea through a fictional story that focuses on one riot police officer during a war. I experimented with unique animation styles, blending cel shading with painting-like texture overlays. For larger shots I developed a procedural city generation algorithm and built simulations for the riot scenes.</p>
+
+      <h4 class="tech-art-heading">Stylized Comic Book Look</h4>
       <div class="boabf-wrap boabf-wrap-face">
         <img class="boabf-face" src="Images/Art/BOABFFAce.png" alt="Character look-dev still">
         <p>Blood on a Bird's Foot deals with intense social topics such as nuclear war and police brutality.
@@ -55,6 +178,76 @@
       </div>
     </div>
 
+    <!-- Game 3: The Inner Demons -->
+    <div class="game-section">
+      <h3>The Inner Demons (17 Years Old)</h3>
+      <div class="steam-embed">
+        <iframe
+          src="https://store.steampowered.com/widget/2472230/"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p>For The Inner Demons, I wanted to blur the lines between video games and cinema. By using a unique room-based control scheme, my camera system can film the game with cinematic angles. The result is a tense movie-like experience that feels distinct from any other horror game.</p>
+
+      <h4 class="tech-art-heading">Found Footage Horror Post Process</h4>
+      <div class="tech-art-pair">
+        <img src="Images/Art/InnerDemonsWide.jpg" alt="The Inner Demons found footage look">
+        <img src="Images/Art/InnerDemons2.jpg" alt="The Inner Demons second scene with the found footage post process">
+      </div>
+      <p>For my cinematic horror game The Inner Demons, I created a found footage post process material.
+        This shader was more of a color grading exercise than a technical shader, but it taught me
+        a lot about the Unreal camera system.
+        A mix of value manipulation through LUTs, film grain, and chromatic aberration gave the perfect blend for a creepy old school found footage movie.
+      </p>
+    </div>
+
+    <!-- Game 4: Terminal V -->
+    <div class="game-section">
+      <h3>Terminal V Tech Demo (17 Years Old)</h3>
+      <div class="steam-embed">
+        <iframe
+          src="https://store.steampowered.com/widget/2656230/"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p>For Terminal V, my goal was to experiment with alternative player movement systems. By using the mouse to control the character’s position (rather than WASD to control velocity), players get to experience what it’s like to be a speedster with almost no limits, something that games have historically struggled to convey.</p>
+
+      <h4 class="tech-art-heading">Designing a Unique Movement Scheme</h4>
+      <div class="tech-art-pair">
+        <img src="Images/ss_c26ba4ecfa49aed969d340c4d8822034fa1cc249.600x338.jpg" alt="Terminal V gameplay">
+      </div>
+      <p>It makes sense why the vast majority of modern games have the same controls (WASD and mouse): they're intuitive and easy for beginners to learn.
+        However, when I thought more about this, I realized unique control schemes would open new design space for action games.
+        I thought about other intuitive control schemes and remembered those old mouse mazes I used to play as a kid.
+        The precision and speed of mouse movements afforded a level of control I hadn't seen in many games.
+        I realized this would be the perfect control scheme for playing as a speedster.
+        Terminal V explores how incredibly fast and granular movement controls can create interesting combat and platforming situations.
+      </p>
+    </div>
+
+    <!-- Game 5: The Reflection -->
+    <div class="game-section">
+      <h3>The Reflection (16 Years Old)</h3>
+      <div class="steam-embed">
+        <iframe
+          src="https://store.steampowered.com/widget/1922540/"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <p>For The Reflection, I tried to explore spaces that wouldn’t be possible in real life. I settled on a retroreflective space that mirrors the geometry across a plane. This allows for interesting combat and platforming scenarios that would not be possible in a traditional game space.</p>
+
+      <h4 class="tech-art-heading">Stylized Mind-Bending Geometry</h4>
+      <div class="tech-art-pair">
+        <img src="Images/Art/Reflection.jpg" alt="Mirrored retroreflective space in The Reflection">
+        <img src="Images/Art/Reflection2.jpg" alt="Second view of the reflected geometry in The Reflection">
+      </div>
+      <p>Creating levels for this game required replicating all level geometry, enemy movements, and projectiles across a plane.
+        For moving objects, I used dynamic mesh slicing to create a convincing reflection visual.
+        An HLSL outline shader, stylized water material, and vibrant colors create a surreal environment that complements the mind-bending gameplay.
+      </p>
+    </div>
+
+    <!-- Ink Painting Shader (my latest game, no page of its own yet) -->
     <div class="game-section">
       <h3>Ink Painting Shader</h3>
       <div class="tech-art-image">
@@ -69,33 +262,32 @@
       </p>
     </div>
 
-    <div class="game-section">
-      <h3>Found Footage Horror Post Process</h3>
-      <div class="tech-art-pair">
-        <img src="Images/Art/InnerDemonsWide.jpg" alt="The Inner Demons found footage look">
-        <img src="Images/Art/InnerDemons2.jpg" alt="The Inner Demons second scene with the found footage post process">
-      </div>
-      <p>For my cinematic horror game The Inner Demons, I created a found footage post process material.
-        This shader was more of a color grading exercise than a technical shader, but it taught me
-        a lot about the Unreal camera system.
-        A mix of value manipulation through LUTs, film grain, and chromatic aberration gave the perfect blend for a creepy old school found footage movie.
-      </p>
-    </div>
+    <h2 class="section-title">Small Projects</h2>
 
     <div class="game-section">
-      <h3>Stylized Mind-Bending Geometry</h3>
-      <div class="tech-art-pair">
-        <img src="Images/Art/Reflection.jpg" alt="Mirrored retroreflective space in The Reflection">
-        <img src="Images/Art/Reflection2.jpg" alt="Second view of the reflected geometry in The Reflection">
-      </div>
-      <p>The Reflection was my first Steam release and explores impossible retroreflective geometry.
-        Creating levels for this game required dynamic mesh slicing to create a convincing reflection that the player can travel through.
-        An HLSL outline shader, stylized water material, and vibrant colors create a surreal environment that complements the mind-bending gameplay.
-      </p>
-    </div>
+      <h3>Broken Peaces (Team Lead) (20 Years Old)</h3>
+      <p>This is the trailer for Broken Peaces, which won 1st place and community choice at UCLA's 2026 Fiat Ludum Game Jam.</p>
 
-    <div class="game-section">
-      <h3>Foliage and Grass</h3>
+      <div style="margin: 20px;">
+        <iframe
+          width="320"
+          height="180"
+          src="https://www.youtube.com/embed/tT6s56HwwCU?si=5Jrd66tMrl5LWAnN"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="steam-embed">
+        <iframe
+          src="https://itch.io/embed/4472608"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <h4 class="tech-art-heading">Foliage and Grass</h4>
       <div class="tech-art-image">
         <img src="Images/Art/BrokenPeacesChina.png" alt="Broken Peaces China scene">
       </div>
@@ -103,8 +295,89 @@
         Using Blender geometry nodes, we built foliage in a noise pattern around the surface of the ruined skyscrapers.
         I also used Unreal's foliage system to render thousands of blades of grass along the landscape.</p>
     </div>
+
+    <div class="game-section">
+      <h3>Hanhee (Team Lead) (19 Years Old)</h3>
+      <div class="steam-embed">
+        <iframe
+          src="https://itch.io/embed/3474736"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <div class="game-section">
+      <h3>Snowman Roadkill Simulator (18 Years Old)</h3>
+      <div class="steam-embed">
+        <iframe
+          src="https://itch.io/embed/3212115"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <div class="game-section">
+      <h3>Boring Desk Job Simulator (18 Years Old)</h3>
+      <div class="steam-embed">
+        <iframe
+          src="https://itch.io/embed/3114310"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <div class="game-section">
+      <h3>Dino Tower (18 Years Old)</h3>
+      <div class="steam-embed">
+        <iframe
+          src="https://itch.io/embed/2907540"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <div class="game-section">
+      <h3>The Exceptionally Goofy Fish (17 Years Old)</h3>
+      <div class="steam-embed">
+        <iframe
+          src="https://itch.io/embed/2154535"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <div class="game-section">
+      <h3>Random Object Spinulator (16 Years Old)</h3>
+      <div class="steam-embed">
+        <iframe
+          src="https://itch.io/embed/1618935"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <div class="game-section">
+      <h3>Slidefall (15 Years Old)</h3>
+      <div class="steam-embed">
+        <iframe
+          src="https://itch.io/embed/1323792"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <div class="game-section">
+      <h3>Head2Head (15 Years Old)</h3>
+      <div class="steam-embed">
+        <iframe
+          src="https://itch.io/embed/1080850"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
   </main>
 
   <script src="script.js"></script>
+  <script src="reveal.js"></script>
 </body>
 </html>

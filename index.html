@@ -110,16 +110,19 @@
       </div>
       <p>For Node Strike, I developed a procedural puzzle generation algorithm. I wanted to make a game with infinite replayability and time pressure to solve puzzles. This required inventing a brand new type of puzzle and an algorithm to generate them. The game is about 3 hours long with 22 levels, 5 bosses, and 12 puzzle types.</p>
 
-      <h4 class="tech-art-heading">Procedural Puzzle Generation</h4>
+      <h4 class="tech-art-heading">Designing a New Type of Puzzle Game</h4>
       <div class="tech-art-pair">
         <img src="Images/ss_208717b5d3a6d49df2d1f5bbebadf7b378838522.600x338.jpg" alt="Node Strike puzzle">
         <img src="Images/ss_f3785ff745936edecf7b8b2012fa5a2332266298.600x338.jpg" alt="Node Strike puzzle during combat">
       </div>
-      <p>Using graph theory, I built a unique puzzle-combat system that tests the player’s ability to think critically under pressure.
-        To solve a puzzle, the player must find the correct order to destroy every node such that the next node they destroy is in the direction indicated by the symbol.
-        During gameplay the player must dodge attacks while solving the puzzle in their head.
-        Once they think they have the solution, they can jump in and try it out.
-        The algorithm that generates these puzzles begins with the solution, the last node destroyed, and then iteratively fills in the puzzle backwards, ensuring that puzzles are always solvable.
+      <p>In high school I participated in Academic Quiz Bowl. The questions were long paragraphs that gave increasingly direct clues towards the answer.
+        I fell in love with the feeling of solving the clues and buzzing in as soon as I knew the answer, and I wanted to convey this feeling in a game.
+        I knew replicating this would require a nearly infinite number of quick puzzles.
+        My goal was to encourage a playstyle that made the player feel smart each time they solved one.
+        I decided to frame these puzzles as enemies in a 3rd-person action game so I could use movement and enemy attacks to put pressure on the player instead of using a timer.
+        I designed levels to slowly introduce these complex mechanics.
+        I also designed light platforming and environmental puzzle solving to break up the high-pressure combat encounters and boss fights.
+        The game contains 22 levels with 12 enemy types and 5 multi-stage boss fights.
       </p>
     </div>
 
@@ -189,15 +192,17 @@
       </div>
       <p>For The Inner Demons, I wanted to blur the lines between video games and cinema. By using a unique room-based control scheme, my camera system can film the game with cinematic angles. The result is a tense movie-like experience that feels distinct from any other horror game.</p>
 
-      <h4 class="tech-art-heading">Found Footage Horror Post Process</h4>
+      <h4 class="tech-art-heading">Designing a Cinematic Game</h4>
       <div class="tech-art-pair">
         <img src="Images/Art/InnerDemonsWide.jpg" alt="The Inner Demons found footage look">
         <img src="Images/Art/InnerDemons2.jpg" alt="The Inner Demons second scene with the found footage post process">
       </div>
-      <p>For my cinematic horror game The Inner Demons, I created a found footage post process material.
-        This shader was more of a color grading exercise than a technical shader, but it taught me
-        a lot about the Unreal camera system.
-        A mix of value manipulation through LUTs, film grain, and chromatic aberration gave the perfect blend for a creepy old school found footage movie.
+      <p>I love movies and have always felt that games that try to emulate them tend to fall slightly short.
+        As an experiment, I wanted to create a cinematic camera in a game that dynamically framed the action.
+        This required designing an entirely new movement system, as typical third-person controls or tank controls would be confusing with a frequently cutting camera.
+        To solve this, I tied movement to key points around the room and displayed these points on an in-game compass.
+        When put together with a stalking enemy character who seeks out the player in an interconnected level, The Inner Demons delivers a unique experience
+        that feels like an old horror movie.
       </p>
     </div>
 
@@ -211,6 +216,18 @@
         </iframe>
       </div>
       <p>For Terminal V, my goal was to experiment with alternative player movement systems. By using the mouse to control the character’s position (rather than WASD to control velocity), players get to experience what it’s like to be a speedster with almost no limits, something that games have historically struggled to convey.</p>
+
+      <h4 class="tech-art-heading">Designing a Unique Movement Scheme</h4>
+      <div class="tech-art-pair">
+        <img src="Images/ss_c26ba4ecfa49aed969d340c4d8822034fa1cc249.600x338.jpg" alt="Terminal V gameplay">
+      </div>
+      <p>It makes sense why the vast majority of modern games have the same controls (WASD and mouse): they're intuitive and easy for beginners to learn.
+        However, when I thought more about this, I realized unique control schemes would open new design space for action games.
+        I thought about other intuitive control schemes and remembered those old mouse mazes I used to play as a kid.
+        The precision and speed of mouse movements afforded a level of control I hadn't seen in many games.
+        I realized this would be the perfect control scheme for playing as a speedster.
+        Terminal V explores how incredibly fast and granular movement controls can create interesting combat and platforming situations.
+      </p>
     </div>
 
     <!-- Game 5: The Reflection -->
@@ -230,8 +247,7 @@
         <img src="Images/Art/Reflection2.jpg" alt="Second view of the reflected geometry in The Reflection">
       </div>
       <p>The Reflection was my first Steam release and explores impossible retroreflective geometry.
-        Creating levels for this game required dynamic mesh slicing to create a convincing reflection that the player can travel through.
-        An HLSL outline shader, stylized water material, and vibrant colors create a surreal environment that complements the mind-bending gameplay.
+        I liked the idea of jumping into a reflection to shoot an enemy who was previously behind a shield on the ground but is now reflected on the ceiling (where the shield no longer breaks line of sight).
       </p>
     </div>
 
@@ -254,7 +270,7 @@
 
     <div class="game-section">
       <h3>Broken Peaces (Team Lead) (20 Years Old)</h3>
-      <p>This is the trailer for Broken Peaces which won 1st place and community choice at UCLA's 2026 Fiat Ludum Game Jam</p>
+      <p>This is the trailer for Broken Peaces, which won 1st place and community choice at UCLA's 2026 Fiat Ludum Game Jam.</p>
 
       <div style="margin: 20px;">
         <iframe
