@@ -57,14 +57,52 @@
     const maxActiveImages = 5; // max images visible at once
     let activeImages = [];
 
-    // Shuffled deck: every image is used once before any image repeats
-    let imageDeck = [];
-    function refillDeck() {
-        imageDeck = [...backgroundImages];
-        for (let i = imageDeck.length - 1; i > 0; i--) {
+    // Gifs and still images each get their own shuffled deck, so every image
+    // in a group is used once before any of them repeats
+    const isGif = src => /\.gif$/i.test(src);
+    const pools = {
+        gif: backgroundImages.filter(isGif),
+        still: backgroundImages.filter(src => !isGif(src))
+    };
+    const decks = { gif: [], still: [] };
+
+    // Every image currently in the DOM (including ones that are fading out)
+    const onScreen = new Map(); // src -> img element
+
+    function shuffled(list) {
+        const copy = [...list];
+        for (let i = copy.length - 1; i > 0; i--) {
             const k = Math.floor(Math.random() * (i + 1));
-            [imageDeck[i], imageDeck[k]] = [imageDeck[k], imageDeck[i]];
+            [copy[i], copy[k]] = [copy[k], copy[i]];
         }
+        return copy;
+    }
+
+    // Next image of the given type that is not already on screen
+    function takeSource(type) {
+        const pool = pools[type];
+        if (pool.length === 0) return null;
+        for (let attempts = 0; attempts <= pool.length; attempts++) {
+            if (decks[type].length === 0) decks[type] = shuffled(pool);
+            const candidate = decks[type].pop();
+            if (!onScreen.has(candidate)) return candidate;
+            decks[type].unshift(candidate); // in use right now: try again later
+        }
+        return null;
+    }
+
+    // Keep about half of the images as gifs (ties go to a gif)
+    function chooseType() {
+        const gifCount = activeImages.filter(i => i.dataset.type === 'gif').length;
+        const stillCount = activeImages.length - gifCount;
+        return gifCount <= stillCount ? 'gif' : 'still';
+    }
+
+    function removeImage(img) {
+        if (img.parentNode) img.remove();
+        const index = activeImages.indexOf(img);
+        if (index > -1) activeImages.splice(index, 1);
+        if (onScreen.get(img.dataset.key) === img) onScreen.delete(img.dataset.key);
     }
 
     const fixedSizes = [
@@ -110,27 +148,29 @@
         // Remove oldest image if max reached
         if (activeImages.length >= maxActiveImages) {
             const oldest = activeImages.shift();
-            if (oldest && oldest.parentNode) {
+            if (oldest) {
                 oldest.classList.remove('active');
-                setTimeout(() => {
-                    if (oldest.parentNode) oldest.remove();
-                }, 3000);
+                setTimeout(() => removeImage(oldest), 3000);
             }
         }
 
         const img = document.createElement('img');
         img.className = 'background-image';
 
-        // Take the next image from the shuffled deck (skip any already on screen)
-        let src;
-        for (let attempts = 0; attempts < 10; attempts++) {
-            if (imageDeck.length === 0) refillDeck();
-            src = imageDeck.pop();
-            if (!activeImages.some(i => i.src.includes(src))) break;
+        // Pick gif or still, then the next unused image of that type
+        let type = chooseType();
+        let src = takeSource(type);
+        if (!src) {
+            type = type === 'gif' ? 'still' : 'gif';
+            src = takeSource(type);
         }
+        if (!src) return; // nothing free right now, try again next tick
 
         img.src = src;
         img.alt = 'Background Screenshot';
+        img.dataset.type = type;
+        img.dataset.key = src;
+        onScreen.set(src, img);
 
         // Pick a fixed size for consistency
         const size = fixedSizes[Math.floor(Math.random() * fixedSizes.length)];
@@ -170,11 +210,7 @@
         }, 6000);
 
         // Remove after fade out
-        setTimeout(() => {
-            if (img.parentNode) img.remove();
-            const index = activeImages.indexOf(img);
-            if (index > -1) activeImages.splice(index, 1);
-        }, 7000);
+        setTimeout(() => removeImage(img), 7000);
     }
 
     // Start image cycle
