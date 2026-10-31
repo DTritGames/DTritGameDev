@@ -30,6 +30,24 @@
         'Images/Art/Reflection.jpg',
         'Images/Art/Reflection2.jpg',
         'Images/Art/BrokenPeacesChina.png',
+        'Gifs/boringdeskjob.gif',
+        'Gifs/dino%20tower.gif',
+        'Gifs/goofyfish.gif',
+        'Gifs/hanhee1.gif',
+        'Gifs/hanhee2.gif',
+        'Gifs/head2head.gif',
+        'Gifs/innerdemons.gif',
+        'Gifs/misc.gif',
+        'Gifs/misc2.gif',
+        'Gifs/misc3.gif',
+        'Gifs/Nodestrikeaction.gif',
+        'Gifs/Nodestrikemap.gif',
+        'Gifs/randomobjectspinulator.gif',
+        'Gifs/reflection1.gif',
+        'Gifs/reflection2.gif',
+        'Gifs/slidefall.gif',
+        'Gifs/slidefall2.gif',
+        'Gifs/snowmanroadkill.gif',
         'Images/refheader.jpg',
         'Images/InnerHeader.jpg',
         'Images/IDHeader.jpg',
@@ -38,6 +56,16 @@
 
     const maxActiveImages = 5; // max images visible at once
     let activeImages = [];
+
+    // Shuffled deck: every image is used once before any image repeats
+    let imageDeck = [];
+    function refillDeck() {
+        imageDeck = [...backgroundImages];
+        for (let i = imageDeck.length - 1; i > 0; i--) {
+            const k = Math.floor(Math.random() * (i + 1));
+            [imageDeck[i], imageDeck[k]] = [imageDeck[k], imageDeck[i]];
+        }
+    }
 
     const fixedSizes = [
         { width: 250, height: 150 },
@@ -89,55 +117,58 @@
                 }, 3000);
             }
         }
-    
+
         const img = document.createElement('img');
         img.className = 'background-image';
-    
-        // Choose a random image source (prevent immediate duplicates)
+
+        // Take the next image from the shuffled deck (skip any already on screen)
         let src;
-        do {
-            src = backgroundImages[Math.floor(Math.random() * backgroundImages.length)];
-        } while (activeImages.some(i => i.src.includes(src)));
-    
+        for (let attempts = 0; attempts < 10; attempts++) {
+            if (imageDeck.length === 0) refillDeck();
+            src = imageDeck.pop();
+            if (!activeImages.some(i => i.src.includes(src))) break;
+        }
+
         img.src = src;
         img.alt = 'Background Screenshot';
-    
+
         // Pick a fixed size for consistency
         const size = fixedSizes[Math.floor(Math.random() * fixedSizes.length)];
         img.style.width = size.width + 'px';
         img.style.height = size.height + 'px';
-    
+
         // Get non-overlapping position
         const pos = getNonOverlappingPosition(size.width, size.height);
         img.style.left = pos.x + 'px';
         img.style.top = pos.y + 'px';
-    
+
         // Initial styles
         img.style.transform = 'scale(1)';
-    
+
         document.querySelector('.background-container').appendChild(img);
         activeImages.push(img);
-    
+
         // Fade in and start growing
         setTimeout(() => {
             img.classList.add('active');
-    
+
             let scale = 1;
-    
+
             function grow() {
+                if (!img.isConnected) return; // stop once the image has been removed
                 scale += 0.0005;
                 img.style.transform = `scale(${scale})`;
                 requestAnimationFrame(grow);
             }
-    
+
             grow();
         }, 100);
-    
-        // Keep visible for 4 seconds then fade out
+
+        // Keep visible for a few seconds then fade out
         setTimeout(() => {
             img.classList.remove('active');
         }, 6000);
-    
+
         // Remove after fade out
         setTimeout(() => {
             if (img.parentNode) img.remove();
@@ -145,16 +176,10 @@
             if (index > -1) activeImages.splice(index, 1);
         }, 7000);
     }
-    
 
     // Start image cycle
-    // Start image cycle
-
     createBackgroundImage();
-
-
-    setInterval(createBackgroundImage, 500); // add a new image every second
- // add a new image every second
+    setInterval(createBackgroundImage, 500); // add a new image every half second
 
     // === PARTICLES CANVAS ===
     (function() {
@@ -249,37 +274,5 @@
     }
     window.addEventListener('scroll', handleScroll);
 
-    // === INTERSECTION OBSERVERS FOR APPEAR/DISAPPEAR ===
-    const headings = document.querySelectorAll('h2');
-    const paragraphs = document.querySelectorAll('main > p:not(.game-section p)');
-    const gameSections = document.querySelectorAll('.game-section');
-
-    const appearObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-    });
-
-    const disappearObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) {
-                entry.target.classList.remove('visible');
-            }
-        });
-    }, {
-        threshold: 0.05,
-        rootMargin: '0px 0px -100px 0px'
-    });
-
-    headings.forEach(h => appearObserver.observe(h));
-    paragraphs.forEach(p => appearObserver.observe(p));
-    gameSections.forEach(s => {
-        appearObserver.observe(s);
-        disappearObserver.observe(s);
-    });
+    // Scroll fade-in of the page content is handled by reveal.js
 });

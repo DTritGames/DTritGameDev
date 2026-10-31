@@ -530,3 +530,70 @@ p {
         padding: 16px 0;
     }
 }
+
+/* ---------- Description / embed with gifs beside it ---------- */
+.with-media {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 340px;
+    gap: 32px;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto 30px auto;
+}
+
+/* itch embeds keep their full width so the thumbnail still shows */
+.with-media.embed-row {
+    grid-template-columns: minmax(0, 600px) minmax(0, 1fr);
+    gap: 24px;
+}
+
+.with-media > p {
+    max-width: none;
+    margin: 0;
+    text-align: left;
+}
+
+.with-media .steam-embed {
+    max-width: none;
+    margin: 0;
+}
+
+.media {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    max-width: 340px;
+    min-width: 0;
+    justify-self: center;
+}
+
+.media-row {
+    flex-direction: row;
+}
+
+.media img {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+}
+
+.media-row img {
+    flex: 1 1 0;
+    width: calc(50% - 6px);
+}
+
+@media (max-width: 768px) {
+    .with-media,
+    .with-media.embed-row {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+    }
+
+    .with-media > p {
+        text-align: center;
+    }
+}
