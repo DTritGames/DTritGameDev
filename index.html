@@ -124,6 +124,14 @@
         I also designed light platforming and environmental puzzle solving to break up the high-pressure combat encounters and boss fights.
         The game contains 22 levels with 12 enemy types and 5 multi-stage boss fights.
       </p>
+
+      <h4 class="tech-art-heading">Writing a Procedural Puzzle Generator</h4>
+      <p>Using graph theory, I built a unique puzzle-combat system that tests the player’s ability to think critically under pressure.
+        To solve a puzzle, the player must find the correct order to destroy every node such that the next node they destroy is in the direction indicated by the symbol.
+        During gameplay the player must dodge attacks while solving the puzzle in their head.
+        Once they think they have the solution, they can jump in and try it out.
+        The algorithm that generates these puzzles begins with the solution, the last node destroyed, and then iteratively fills in the puzzle backwards, ensuring that puzzles are always solvable.
+      </p>
     </div>
 
     <!-- Game 2: Blood on a Bird's Foot -->
@@ -204,6 +212,13 @@
         When put together with a stalking enemy character who seeks out the player in an interconnected level, The Inner Demons delivers a unique experience
         that feels like an old horror movie.
       </p>
+
+      <h4 class="tech-art-heading">Found Footage Horror Post Process</h4>
+      <p>For my cinematic horror game The Inner Demons, I created a found footage post process material.
+        This shader was more of a color grading exercise than a technical shader, but it taught me
+        a lot about the Unreal camera system.
+        A mix of value manipulation through LUTs, film grain, and chromatic aberration gave the perfect blend for a creepy old school found footage movie.
+      </p>
     </div>
 
     <!-- Game 4: Terminal V -->
@@ -248,6 +263,9 @@
       </div>
       <p>The Reflection was my first Steam release and explores impossible retroreflective geometry.
         I liked the idea of jumping into a reflection to shoot an enemy who was previously behind a shield on the ground but is now reflected on the ceiling (where the shield no longer breaks line of sight).
+        Creating levels for this game required replicating all level geometry, enemy movements, and projectiles across a plane.
+        For moving objects, I used dynamic mesh slicing to create a convincing reflection visual.
+        An HLSL outline shader, stylized water material, and vibrant colors create a surreal environment that complements the mind-bending gameplay.
       </p>
     </div>
 
