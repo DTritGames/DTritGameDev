@@ -106,9 +106,9 @@
         </iframe>
       </div>
       <div class="with-media">
-        <p>Node Strike is a 3D combat-puzzle game where you defeat enemies by solving puzzles. 
+        <p>Node Strike is a 3D combat-puzzle game where you defeat enemies by solving puzzles.
           My goal was to make a game with infinite replayability that makes the player think critically under time pressure.
-          This required inventing a brand new type of puzzle and an algorithm to generate them. 
+          This required inventing a brand new type of puzzle and an algorithm to generate them.
           I've been working on Node Strike for about 2 years and plan to release it soon.
           The game is about 3 hours long with 22 levels, 5 multi-stage boss fights, 12 puzzle types, and 12 enemy types.</p>
         <div class="media">
@@ -194,7 +194,9 @@
         <img src="Images/Art/BOABFhumvee.png" alt="Vehicle still">
       </div>
     </div>
-        <div class="game-section">
+
+    <!-- Game 3: Broken Peaces -->
+    <div class="game-section">
       <h3>Broken Peaces: Game Jam Winner (lead programmer, lead mechanic/level designer, lead writer)</h3>
       <p>This is the trailer for Broken Peaces, which won 1st place and community choice at UCLA's 2026 Fiat Ludum Game Jam.</p>
 
@@ -210,47 +212,42 @@
           allowfullscreen>
         </iframe>
       </div>
-      <div class="with-media embed-row">
-        <div class="steam-embed">
-          <iframe
-            src="https://itch.io/embed/4472608"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <p>
-          Broken Peaces is a game that explores the horrors of nuclear war and won 1st Place at the 2026 UCLA Fiat Ludum Game Jam (as well as Community Choice).
-          As team lead, I collaborated closely with our diverse team, which enhanced not only the development process, but also the narrative. 
-          In Broken Peaces, you play as three characters across different time periods in Korea, India, and China, reflecting the cultural backgrounds of our team members. 
-          The game is voice acted in 3 languages, contains 2D painted cutscenes, and samples real instruments and singing in the music.
-          </p>
-        <h4 class="tech-art-heading">Conflict Resolution Through a Unified Vision</h4>
-         <p>
-          I served as the lead programmer, lead mechanic/level designer, and lead writer, but all team members contributed to each area of the game.
-          Before we started development, our team got together and decided on a unified vision: scale.
-          We wanted every part of the game to feel larger.
-          This gave us a framework to solve disagreements when development began.
-          For example, one team member wanted to have players travel inside buildings during gameplay.
-          Together, we made a pros and cons list based on how the mechanic fit with the unified vision.
-          A pro is that going inside buildings makes the world narrative feel bigger, but a con is that it slows down gameplay which could harm the scale of the levels.
-          Our solution was to have cutscenes that showed important indoor narrative scenes (like a character remembering the death of his mother)
-          which allowed us to keep the pros of the idea while removing the cons.
-        </p>
+
+      <div class="steam-embed">
+        <iframe
+          src="https://itch.io/embed/4472608"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="with-media">
+        <p>Broken Peaces is a game that explores the horrors of nuclear war and won 1st Place at the 2026 UCLA Fiat Ludum Game Jam (as well as Community Choice).
+          As team lead, I collaborated closely with our diverse team, which enhanced not only the development process but also the narrative.
+          In Broken Peaces, you play as three characters across different time periods in Korea, India, and China, reflecting the cultural backgrounds of our team members.
+          The game is voice acted in 3 languages, contains 2D painted cutscenes, and samples real instruments and singing in the music.</p>
         <div class="media">
           <img src="Gifs/broken-peaces-20-28s.gif" alt="Broken Peaces gameplay">
         </div>
       </div>
 
-      <h4 class="tech-art-heading">Foliage and Grass</h4>
-      <div class="tech-art-image">
+      <h4 class="tech-art-heading">Conflict Resolution Through a Unified Vision</h4>
+      <div class="tech-art-pair">
         <img src="Images/Art/BrokenPeacesChina.png" alt="Broken Peaces China scene">
+        <img src="Images/Untitled_-_April_13_2026_13.48.47.png" alt="Broken Peaces screenshot">
       </div>
-      <p>For Broken Peaces, I worked with our team's 3D artist to build a city retaken by nature.
-        Using Blender geometry nodes, we built foliage in a noise pattern around the surface of the ruined skyscrapers.
-        I also used Unreal's foliage system to render thousands of blades of grass along the landscape.</p>
+      <p>I served as the lead programmer, lead mechanic/level designer, and lead writer, but all team members contributed to each area of the game.
+        Before we started development, our team got together and decided on a unified vision: scale.
+        We wanted every part of the game to feel larger.
+        This gave us a framework to solve disagreements when development began.
+        For example, one team member wanted to have players travel inside buildings during gameplay.
+        Together, we made a pros and cons list based on how the mechanic fit with the unified vision.
+        A pro is that going inside buildings makes the world narrative feel bigger, but a con is that it slows down gameplay, which could harm the scale of the levels.
+        Our solution was to have cutscenes that showed important indoor narrative scenes (like a character remembering the death of his mother),
+        which allowed us to keep the pros of the idea while removing the cons.
+      </p>
     </div>
 
-
-    <!-- Game 3: The Inner Demons -->
+    <!-- Game 4: The Inner Demons -->
     <div class="game-section">
       <h3>The Inner Demons (solo project)</h3>
       <div class="steam-embed">
@@ -287,7 +284,7 @@
       </p>
     </div>
 
-    <!-- Game 4: Terminal V -->
+    <!-- Game 5: Terminal V -->
     <div class="game-section">
       <h3>Terminal V Tech Demo (solo project)</h3>
       <div class="steam-embed">
@@ -317,7 +314,7 @@
       </p>
     </div>
 
-    <!-- Game 5: The Reflection -->
+    <!-- Game 6: The Reflection -->
     <div class="game-section">
       <h3>The Reflection (solo project)</h3>
       <div class="steam-embed">
@@ -357,7 +354,7 @@
         It uses a variety of techniques to give the world a painted look.
         The material of each object uses a local-space aligned repeating paint texture I created in GIMP.
         For skeletal meshes, the UVs use pre-skinned local-space so the mesh can deform without warping the texture.
-        The material also uses two layers of cel shading, one for shadows and one for highlights, and a fresnel node multiplied with the painted texture gives the "erosion" effect around the edges.
+        The material also uses two layers of cel shading, one for shadows and one for highlights, and a Fresnel node multiplied with the painted texture gives the "erosion" effect around the edges.
         Lastly, I made a post-process material consisting of an HLSL outline shader multiplied with a scrolling noise texture to create ink strokes of varying thickness.
       </p>
     </div>
@@ -365,7 +362,7 @@
     <h2 class="section-title">Small Projects</h2>
 
     <div class="game-section">
-      <h3>Hanhee: (lead programmer, lead mechanic/level designer)</h3>
+      <h3>Hanhee (lead programmer, lead mechanic/level designer)</h3>
       <div class="with-media embed-row">
         <div class="steam-embed">
           <iframe
