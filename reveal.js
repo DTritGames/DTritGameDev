@@ -1,7 +1,7 @@
 // reveal.js: fades each block in as it scrolls into view
 (function () {
   var targets = document.querySelectorAll(
-    'main > h2, main > p, .game-section > *:not(style):not(.video-container)'
+    'main > h2, main > p, main > .awards-section, .project-card, .game-section > *:not(style):not(.video-container)'
   );
 
   // Browsers without IntersectionObserver: just show everything
@@ -24,3 +24,4 @@
     observer.observe(el);
   });
 })();
+

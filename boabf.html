@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blood on a Bird's Foot | dtritgamedev</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="project-page" data-base="">
+  <div class="background-container">
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+    <div class="background-overlay"></div>
+  </div>
+
+  <main>
+    <nav class="back-row"><a class="back-link" href="index.html">&larr; All Projects</a></nav>
+
+    <div class="game-section boabf-section">
+      <h1 class="project-title">Blood on a Bird's Foot 새발의피 (codirector, cowriter, lead programmer)</h1>
+      <p>Blood on a Bird's Foot is a short film animated using Blender and Unreal Engine in collaboration with 8k Productions.</p>
+      <div class="image-container">
+        <img src="Images/Laurel1.png" alt="Festival laurel">
+        <img src="Images/Laurel2.png" alt="Festival laurel">
+      </div>
+
+      <div class="video-container in-view">
+        <iframe
+          src="https://www.youtube.com/embed/OVAvkVXA-c0?si=lvhAT5IqveY0Ac80"
+          title="Blood on a Bird's Foot (새발의피) Trailer"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <p>For Blood on a Bird's Foot, I explored social injustice in South Korea through a fictional story that focuses on one riot police officer during a war. I experimented with unique animation styles, blending cel shading with painting-like texture overlays. For larger shots I developed a procedural city generation algorithm and built simulations for the riot scenes.</p>
+
+      <h4 class="tech-art-heading">Stylized Comic Book Look</h4>
+      <div class="boabf-wrap boabf-wrap-face">
+        <img class="boabf-face" src="Images/Art/BOABFFAce.png" alt="Character look-dev still">
+        <p>Blood on a Bird's Foot deals with intense social topics such as nuclear war and police brutality.
+        As lead tech artist, I was faced with the challenge of creating stylized visuals that fit the tone and themes of the film.
+        I settled on a mix of cel shading and a high-contrast monotone color scheme.
+        Using the custom depth pass, I isolated organic components like skin, hair, and eyes, and applied cel shading and a custom LUT.
+        This separated the main character from the background, emphasizing the themes of isolation.
+        The environment visuals were fine-tuned with a combination of chromatic aberration, bloom, and fog.
+        Together these elements provided a comic book-esque visual that set an atmosphere consistent with the serious subject matter.</p>
+      </div>
+
+      <div class="boabf-wrap boabf-wrap-stills">
+        <img src="Images/Art/BOABFBodies.png" alt="Riot scene still">
+        <img src="Images/Art/BOABFhumvee.png" alt="Vehicle still">
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="reveal.js"></script>
+</body>
+</html>

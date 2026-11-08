@@ -1,4 +1,85 @@
 ﻿document.addEventListener('DOMContentLoaded', function() {
+    // Disable floating background screenshot cycle on project sub-pages
+    if (document.body.classList.contains('project-page')) {
+        // === PARTICLES CANVAS FOR SUB-PAGES ===
+        (function() {
+            const canvas = document.getElementById('particle-canvas');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            if (!ctx) return;
+
+            let width, height;
+            let particles = [];
+            const particleCount = 80;
+
+            function resize() {
+                width = window.innerWidth;
+                height = window.innerHeight;
+                canvas.width = width;
+                canvas.height = height;
+            }
+
+            window.addEventListener('resize', resize);
+            resize();
+
+            function createParticles() {
+                particles = [];
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push({
+                        x: Math.random() * width,
+                        y: Math.random() * height,
+                        size: Math.random() * 2 + 1,
+                        speedX: (Math.random() - 0.5) * 0.3,
+                        speedY: (Math.random() - 0.5) * 0.3,
+                        opacity: Math.random() * 0.3 + 0.1,
+                        flickerSpeed: Math.random() * 0.002 + 0.001,
+                        flickerDirection: 1
+                    });
+                }
+            }
+
+            function updateParticles() {
+                particles.forEach(p => {
+                    p.x += p.speedX;
+                    p.y += p.speedY;
+
+                    if (p.x > width) p.x = 0;
+                    if (p.x < 0) p.x = width;
+                    if (p.y > height) p.y = 0;
+                    if (p.y < 0) p.y = height;
+
+                    p.opacity += p.flickerSpeed * p.flickerDirection;
+                    if (p.opacity >= 0.3) p.flickerDirection = -1;
+                    if (p.opacity <= 0.2) p.flickerDirection = 1;
+                });
+            }
+
+            function drawParticles() {
+                ctx.clearRect(0, 0, width, height);
+                particles.forEach(p => {
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255, 255, 255, ${p.opacity})`;
+                    ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+                    ctx.shadowBlur = 4;
+                    ctx.fill();
+                });
+            }
+
+            function animate() {
+                updateParticles();
+                drawParticles();
+                requestAnimationFrame(animate);
+            }
+
+            createParticles();
+            animate();
+        })();
+
+        return; // Stop execution of hero background images on sub-pages
+    }
+
+    // === HOME PAGE HERO BACKGROUND IMAGES ===
     const backgroundImages = [
         'Images/ss_5b106830067f9ab8923dfcbb2da83d6374e72a1e.600x338.jpg',
         'Images/ss_05f2acc6370630327610f3f50f3dfb88c12e75d2.600x338.jpg',
@@ -24,7 +105,6 @@
         'Images/Art/BOABFBodies.png',
         'Images/Art/BOABFhumvee.png',
         'Images/Art/BOABFCIty.png',
-        'Images/Art/Watercolor.png',
         'Images/Art/InnerDemonsWide.jpg',
         'Images/Art/InnerDemons2.jpg',
         'Images/Art/Reflection.jpg',
@@ -54,20 +134,17 @@
         'Images/header.jpg'
     ];
 
-    const maxActiveImages = 5; // max images visible at once
+    const base = document.body.dataset.base || '';
+    const maxActiveImages = 5;
     let activeImages = [];
 
-    // Gifs and still images each get their own shuffled deck, so every image
-    // in a group is used once before any of them repeats
     const isGif = src => /\.gif$/i.test(src);
     const pools = {
         gif: backgroundImages.filter(isGif),
         still: backgroundImages.filter(src => !isGif(src))
     };
     const decks = { gif: [], still: [] };
-
-    // Every image currently in the DOM (including ones that are fading out)
-    const onScreen = new Map(); // src -> img element
+    const onScreen = new Map();
 
     function shuffled(list) {
         const copy = [...list];
@@ -78,7 +155,6 @@
         return copy;
     }
 
-    // Next image of the given type that is not already on screen
     function takeSource(type) {
         const pool = pools[type];
         if (pool.length === 0) return null;
@@ -86,12 +162,11 @@
             if (decks[type].length === 0) decks[type] = shuffled(pool);
             const candidate = decks[type].pop();
             if (!onScreen.has(candidate)) return candidate;
-            decks[type].unshift(candidate); // in use right now: try again later
+            decks[type].unshift(candidate);
         }
         return null;
     }
 
-    // Keep about half of the images as gifs (ties go to a gif)
     function chooseType() {
         const gifCount = activeImages.filter(i => i.dataset.type === 'gif').length;
         const stillCount = activeImages.length - gifCount;
@@ -113,7 +188,6 @@
         { width: 240, height: 145 }
     ];
 
-    // Finds a position where image won't overlap existing images
     function getNonOverlappingPosition(imgWidth, imgHeight, maxAttempts = 30) {
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
@@ -132,20 +206,18 @@
                 );
             });
 
-            if (!overlaps) {
-                return { x, y };
-            }
+            if (!overlaps) return { x, y };
         }
-        // Fallback to random if no free space found
         return {
             x: Math.random() * (viewportWidth - imgWidth),
             y: Math.random() * (viewportHeight - imgHeight)
         };
     }
 
-    // Create and show a background image with fade in/out and continuous growth
     function createBackgroundImage() {
-        // Remove oldest image if max reached
+        const container = document.querySelector('.background-container');
+        if (!container) return;
+
         if (activeImages.length >= maxActiveImages) {
             const oldest = activeImages.shift();
             if (oldest) {
@@ -157,70 +229,57 @@
         const img = document.createElement('img');
         img.className = 'background-image';
 
-        // Pick gif or still, then the next unused image of that type
         let type = chooseType();
         let src = takeSource(type);
         if (!src) {
             type = type === 'gif' ? 'still' : 'gif';
             src = takeSource(type);
         }
-        if (!src) return; // nothing free right now, try again next tick
+        if (!src) return;
 
-        img.src = src;
+        img.src = base + src;
         img.alt = 'Background Screenshot';
         img.dataset.type = type;
         img.dataset.key = src;
         onScreen.set(src, img);
 
-        // Pick a fixed size for consistency
         const size = fixedSizes[Math.floor(Math.random() * fixedSizes.length)];
         img.style.width = size.width + 'px';
         img.style.height = size.height + 'px';
 
-        // Get non-overlapping position
         const pos = getNonOverlappingPosition(size.width, size.height);
         img.style.left = pos.x + 'px';
         img.style.top = pos.y + 'px';
-
-        // Initial styles
         img.style.transform = 'scale(1)';
 
-        document.querySelector('.background-container').appendChild(img);
+        container.appendChild(img);
         activeImages.push(img);
 
-        // Fade in and start growing
         setTimeout(() => {
             img.classList.add('active');
-
             let scale = 1;
-
             function grow() {
-                if (!img.isConnected) return; // stop once the image has been removed
+                if (!img.isConnected) return;
                 scale += 0.0005;
                 img.style.transform = `scale(${scale})`;
                 requestAnimationFrame(grow);
             }
-
             grow();
         }, 100);
 
-        // Keep visible for a few seconds then fade out
-        setTimeout(() => {
-            img.classList.remove('active');
-        }, 6000);
-
-        // Remove after fade out
+        setTimeout(() => { img.classList.remove('active'); }, 6000);
         setTimeout(() => removeImage(img), 7000);
     }
 
-    // Start image cycle
     createBackgroundImage();
-    setInterval(createBackgroundImage, 500); // add a new image every half second
+    setInterval(createBackgroundImage, 500);
 
     // === PARTICLES CANVAS ===
     (function() {
         const canvas = document.getElementById('particle-canvas');
+        if (!canvas) return;
         const ctx = canvas.getContext('2d');
+        if (!ctx) return;
 
         let width, height;
         let particles = [];
@@ -257,13 +316,11 @@
                 p.x += p.speedX;
                 p.y += p.speedY;
 
-                // Wrap around edges
                 if (p.x > width) p.x = 0;
                 if (p.x < 0) p.x = width;
                 if (p.y > height) p.y = 0;
                 if (p.y < 0) p.y = height;
 
-                // Flicker opacity
                 p.opacity += p.flickerSpeed * p.flickerDirection;
                 if (p.opacity >= 0.3) p.flickerDirection = -1;
                 if (p.opacity <= 0.2) p.flickerDirection = 1;
@@ -294,21 +351,20 @@
 
     // === TITLE FADE ON SCROLL ===
     const titleOverlay = document.querySelector('.background-overlay');
-    let titleFaded = false;
+    if (titleOverlay) {
+        let titleFaded = false;
+        function handleScroll() {
+            const scrollY = window.scrollY;
+            const fadeThreshold = 100;
 
-    function handleScroll() {
-        const scrollY = window.scrollY;
-        const fadeThreshold = 100;
-
-        if (scrollY > fadeThreshold && !titleFaded) {
-            titleOverlay.classList.add('fade-out');
-            titleFaded = true;
-        } else if (scrollY <= fadeThreshold && titleFaded) {
-            titleOverlay.classList.remove('fade-out');
-            titleFaded = false;
+            if (scrollY > fadeThreshold && !titleFaded) {
+                titleOverlay.classList.add('fade-out');
+                titleFaded = true;
+            } else if (scrollY <= fadeThreshold && titleFaded) {
+                titleOverlay.classList.remove('fade-out');
+                titleFaded = false;
+            }
         }
+        window.addEventListener('scroll', handleScroll, { passive: true });
     }
-    window.addEventListener('scroll', handleScroll);
-
-    // Scroll fade-in of the page content is handled by reveal.js
 });

@@ -1,5 +1,4 @@
-﻿/* style.css */
-@import url('https://fonts.googleapis.com/css2?family=Agency+FB:wght@400;700&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Agency+FB:wght@400;700&display=swap');
 
 body {
     font-family: 'Agency FB', Arial, sans-serif;
@@ -547,6 +546,11 @@ p {
     gap: 24px;
 }
 
+/* a row that also holds laurels gets a wider first column */
+.with-media.embed-row:has(.card-row) {
+    grid-template-columns: minmax(0, 680px) minmax(0, 1fr);
+}
+
 .with-media > p {
     max-width: none;
     margin: 0;
@@ -596,4 +600,647 @@ p {
     .with-media > p {
         text-align: center;
     }
+}
+
+
+/* ---------- Styles that used to live inline in index.html ---------- */
+.steam-embed iframe {
+    height: 190px;
+}
+
+.video-container {
+    position: relative;
+    width: 90%;
+    max-width: 720px;
+    margin: 0 auto 2rem auto;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.45);
+    aspect-ratio: 16 / 9;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.video-container.in-view {
+    opacity: 1;
+    transform: none;
+}
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 20px auto;
+}
+
+.image-container img {
+    width: 250px;
+    max-width: 40%;
+    height: auto;
+}
+
+/* ---------- Home page: project cards ---------- */
+.project-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.project-card {
+    position: relative;               /* the whole card is one big link */
+    padding: 28px 24px 20px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.04);
+    text-align: center;
+    min-width: 0;
+    cursor: pointer;                  /* Shows pointer hand across entire card */
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* Lift card up and brighten on hover */
+.project-card:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: rgba(255, 255, 255, 0.07);
+    transform: translateY(-6px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(255, 255, 255, 0.1);
+}
+
+.project-card h3 {
+    margin: 0 0 24px 0;
+    color: #ffffff;
+    font-size: 28px;
+    font-family: 'Agency FB', Arial, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+/* Underline title when hovering anywhere on the card */
+.project-card:hover h3 .card-link {
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 6px;
+}
+
+.card-link {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Invisible layer over the whole card so a click anywhere opens the project */
+.card-link::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: 18px;
+}
+
+.card-link:focus-visible::after {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+}
+
+/* View details prompt spaced out at the bottom of the card */
+.project-card::after {
+    content: "View Project Details →";
+    display: block;
+    margin-top: 24px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    font-size: 16px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.5);
+    transition: color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.project-card:hover::after {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.35);
+    transform: translateX(4px);
+}
+
+/* Callout block for Small Projects link on home page */
+.small-projects-callout {
+    max-width: 800px;
+    margin: 40px auto 60px auto;
+    padding: 36px 24px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.03);
+    text-align: center;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.small-projects-callout:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.small-projects-callout p {
+    margin-bottom: 24px;
+}
+
+/* Custom callout text for Small Projects card */
+.project-card.small-projects-card::after {
+    content: "View Small Projects →";
+}
+
+/* GIF preview row inside Small Projects card */
+.card-gifs {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    max-width: 760px;
+    margin: 0 auto 20px auto;
+}
+
+.card-gifs img {
+    flex: 1 1 0;
+    min-width: 0;
+    width: calc(33.333% - 10px);
+    height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 600px) {
+    .card-gifs {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .card-gifs img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.project-card .steam-embed {
+    max-width: none;
+    margin: 0 0 20px 0;
+}
+
+.project-card .steam-embed:hover {
+    transform: none;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+}
+
+.card-image {
+    max-width: 720px;
+    margin: 0 auto 20px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+}
+
+.card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* bullets are centered (bullet sits inline so wrapped lines stay centered) */
+.card-bullets {
+    margin: 0;
+    padding-left: 0;
+    list-style-position: inside;
+    text-align: center;
+    color: #cccccc;
+    font-size: 18px;
+    line-height: 1.6;
+    font-family: 'Agency FB', Arial, sans-serif;
+    letter-spacing: 0.3px;
+}
+
+.card-bullets li {
+    margin-bottom: 6px;
+}
+
+/* ---------- Project pages ---------- */
+.project-page main {
+    margin-top: 0;
+    padding-top: 90px;
+    min-height: 100vh;
+    box-sizing: border-box;
+}
+
+.project-page .down-arrow {
+    display: none;
+}
+
+.back-row {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.back-link {
+    display: inline-block;
+    padding: 8px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 30px;
+    color: #cccccc;
+    font-size: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.back-link:hover {
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.project-title {
+    margin: 0 0 30px 0;
+    color: #ffffff;
+    font-size: 36px;
+    font-family: 'Agency FB', Arial, sans-serif;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+@media (max-width: 768px) {
+    .project-title {
+        font-size: 24px;
+    }
+
+    .project-page main {
+        padding-top: 70px;
+    }
+
+    .card-bullets {
+        font-size: 16px;
+    }
+}
+
+
+/* ---------- Blood on a Bird's Foot card: laurels around the poster ---------- */
+/* everything is 190px tall, the same height as the embeds on the other cards */
+.card-laurels {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    height: 190px;
+    margin: 0 0 24px 0;
+}
+
+.card-laurel {
+    flex: 0 1 auto;
+    height: 190px;
+    width: auto;
+    min-width: 0;
+    max-width: 30%;
+    object-fit: contain;
+}
+
+.card-cover {
+    flex: 0 1 auto;
+    height: 190px;
+    width: auto;
+    min-width: 0;
+    max-width: 40%;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .card-laurels {
+        gap: 10px;
+    }
+
+    .project-card h3 {
+        font-size: 22px;
+    }
+}
+
+
+/* ---------- widget placeholder (shown until embeds.js loads the iframe) ---------- */
+.steam-embed {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* ---------- Awards ---------- */
+.awards-section {
+    max-width: 1000px;
+    margin: 0 auto 40px auto;
+}
+
+.awards-title {
+    margin: 0 0 20px 0;
+}
+
+.awards,
+.award-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.awards {
+    gap: 8px 14px;
+}
+
+.awards .award-laurel {
+    height: 80px;
+}
+
+.award-laurel {
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* ---------- Embed on the left, laurels on the right ---------- */
+/* if the laurels don't fit beside the embed they wrap underneath it instead of running off the page */
+.card-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 14px 20px;
+    margin: 0 0 20px 0;
+    min-width: 0;
+}
+
+.card-row .steam-embed {
+    flex: 0 1 560px;
+    max-width: 560px;
+    min-width: 0;
+    margin: 0;
+}
+
+.card-row .award-row {
+    flex: 0 0 auto;
+    flex-wrap: nowrap;
+    max-width: 100%;
+    gap: 10px;
+    margin: 0;
+}
+
+.card-row .award-laurel {
+    height: 90px;
+}
+
+/* Hanhee: stack the two laurels so the embed keeps its width */
+.card-row .award-row-stack {
+    flex-direction: column;
+    gap: 6px;
+}
+
+.card-row .award-row-stack .award-laurel {
+    height: 60px;
+}
+
+/* the Hanhee row is already a grid, so the wrapper shouldn't add a bottom margin */
+.with-media .card-row {
+    margin: 0;
+}
+
+/* ---------- Embeds with no laurels: centered, not full width ---------- */
+.project-card > .steam-embed {
+    max-width: 560px;
+    margin: 0 auto 20px auto;
+}
+
+.with-media > .steam-embed {
+    width: 100%;
+    max-width: 600px;
+    justify-self: center;
+}
+
+/* ---------- Embed sizes ---------- */
+/* Steam widgets are built for 190px; cropping them adds a scrollbar */
+.project-card .steam-embed iframe,
+.game-section .steam-embed iframe {
+    height: 190px;
+}
+
+/* itch embeds: tall and wide enough that the thumbnail always shows */
+.project-card .steam-embed iframe[data-src*="itch.io"],
+.project-card .steam-embed iframe[src*="itch.io"],
+.game-section .steam-embed iframe[data-src*="itch.io"],
+.game-section .steam-embed iframe[src*="itch.io"] {
+    height: 167px;
+}
+
+.steam-embed:has(iframe[data-src*="itch.io"]),
+.steam-embed:has(iframe[src*="itch.io"]) {
+    min-width: min(552px, 100%);
+}
+
+@media (max-width: 900px) {
+    .with-media.embed-row,
+    .with-media.embed-row:has(.card-row) {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .awards .award-laurel {
+        height: 60px;
+    }
+
+    .card-row {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .card-row .steam-embed {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: none;
+    }
+
+    .card-row .award-laurel {
+        height: 70px;
+    }
+
+    .card-row .award-row-stack {
+        flex-direction: row;
+    }
+
+    .card-row .award-row-stack .award-laurel {
+        height: 70px;
+    }
+}
+
+/* Awards wait a moment before fading in since they're the first thing on the page */
+.awards-section.reveal {
+    transition-delay: 0.1s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .awards-section.reveal {
+        transition-delay: 0s;
+    }
+}
+
+/* ---------- Embed loading throbber ---------- */
+.steam-embed {
+    position: relative;
+}
+
+.steam-embed.is-loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 36px;
+    height: 36px;
+    margin: -18px 0 0 -18px;
+    border: 3px solid rgba(255, 255, 255, 0.2);
+    border-top-color: #ffffff;
+    border-radius: 50%;
+    animation: embed-spin 0.8s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes embed-spin {
+    to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .steam-embed.is-loading::after {
+        animation-duration: 2.4s;
+    }
+}
+
+/* ---------- Hanhee: laurels always beside the embed ---------- */
+/* the embed gives up a little width instead of the laurels wrapping underneath */
+@media (min-width: 901px) {
+    .with-media.embed-row:has(.card-row) {
+        grid-template-columns: minmax(0, 720px) minmax(0, 1fr);
+    }
+}
+
+@media (min-width: 769px) {
+    .with-media .card-row {
+        flex-wrap: nowrap;
+        gap: 14px;
+    }
+
+    .with-media .card-row .steam-embed {
+        flex: 1 1 552px;
+        max-width: 560px;
+        min-width: 440px;
+    }
+
+    .with-media .card-row .award-row-stack {
+        flex: 0 0 auto;
+    }
+
+    .with-media .card-row .award-row-stack .award-laurel {
+        height: 56px;
+    }
+}
+
+
+/* ---------- Blood on a Bird's Foot: two images + laurels ---------- */
+.card-covers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.card-covers .card-cover {
+    flex: 0 1 auto;
+    height: 190px;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .card-covers {
+        width: 100%;
+    }
+
+    .card-covers .card-cover {
+        height: auto;
+        width: calc(50% - 6px);
+        max-width: 50%;
+    }
+}
+
+/* Custom button text for Small Projects card */
+.project-card.small-projects-card::after {
+    content: "View Small Projects →";
+}
+
+/* 6-GIF Grid Layout */
+.card-gifs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    max-width: 900px;
+    margin: 0 auto 10px auto;
+}
+
+.card-gifs img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .card-gifs {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .card-gifs img {
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-gifs {
+        grid-template-columns: 1fr;
+    }
+
+    .card-gifs img {
+        height: auto;
+    }
+}
+
+/* Force project sub-pages to display content immediately */
+.project-page .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
 }

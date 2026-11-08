@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Node Strike | dtritgamedev</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="project-page" data-base="">
+  <div class="background-container">
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+    <div class="background-overlay"></div>
+  </div>
+
+  <main>
+    <nav class="back-row"><a class="back-link" href="index.html">&larr; All Projects</a></nav>
+
+    <div class="game-section">
+      <h1 class="project-title">Node Strike: Procedurally Generated Puzzle-Combat (solo project)</h1>
+      <div style="margin: 20px;">
+        <iframe
+          width="320"
+          height="180"
+          src="https://www.youtube.com/embed/T4BDZkkZMqg"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="steam-embed">
+        <iframe
+          data-src="https://store.steampowered.com/widget/3639030/"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="with-media">
+        <p>Node Strike is a 3D combat-puzzle game where you defeat enemies by solving puzzles.
+          My goal was to make a game with infinite replayability that makes the player think critically under time pressure.
+          This required inventing a brand new type of puzzle and an algorithm to generate them.
+          I've been working on Node Strike for about 2 years and plan to release it soon.
+          The game is about 3 hours long with 22 levels, 5 multi-stage boss fights, 12 puzzle types, and 12 enemy types.</p>
+        <div class="media">
+          <img src="Gifs/Nodestrikeaction.gif" alt="Node Strike combat gameplay">
+          <img src="Gifs/Nodestrikemap.gif" alt="Node Strike level map">
+        </div>
+      </div>
+
+      <h4 class="tech-art-heading">Designing a New Type of Puzzle Game</h4>
+      <div class="tech-art-pair">
+        <img src="Images/ss_208717b5d3a6d49df2d1f5bbebadf7b378838522.600x338.jpg" alt="Node Strike puzzle">
+        <img src="Images/ss_f3785ff745936edecf7b8b2012fa5a2332266298.600x338.jpg" alt="Node Strike puzzle during combat">
+      </div>
+      <p>In high school I participated in Academic Quiz Bowl. The questions were long paragraphs that gave increasingly direct clues towards the answer.
+        I fell in love with the feeling of solving the clues and buzzing in as soon as I knew the answer, and I wanted to convey this feeling in a game.
+        I knew replicating this would require a nearly infinite number of quick puzzles.
+        My goal was to encourage a playstyle that made the player feel smart each time they solved one.
+        I decided to frame these puzzles as enemies in a 3rd-person action game so I could use movement and enemy attacks to put pressure on the player instead of using a timer.
+        I designed levels to slowly introduce these complex mechanics.
+        I also designed light platforming and environmental puzzle solving to break up the high-pressure combat encounters and boss fights.
+      </p>
+
+      <h4 class="tech-art-heading">Writing a Procedural Puzzle Generator</h4>
+      <p>Using graph theory, I built a unique puzzle-combat system that tests the player’s ability to think critically under pressure.
+        To solve a puzzle, the player must find the correct order to destroy every node such that the next node they destroy is in the direction indicated by the symbol.
+        During gameplay the player must dodge attacks while solving the puzzle in their head.
+        Once they think they have the solution, they can jump in and try it out.
+        The algorithm that generates these puzzles begins with the solution, the last node destroyed, and then iteratively fills in the puzzle backwards, ensuring that puzzles are always solvable.
+      </p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="reveal.js"></script>
+  <script src="embeds.js"></script>
+</body>
+</html>

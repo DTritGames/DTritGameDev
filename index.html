@@ -3,62 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dtritgamedev</title>
+  <title>Daniel Tritasavit | Game Development</title>
+  <meta name="description" content="Game development portfolio of Daniel Tritasavit: gameplay programming, level design, and award-winning game jam projects." />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* TEMP FIX: Inline styles to ensure iframe spacing issue is resolved */
-    .steam-embed {
-      margin: 0 auto 30px auto;
-      max-width: 600px;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+    /* kept here on purpose so these always apply, whatever style.css is loaded */
+    a.contact-link,
+    a.contact-link:link,
+    a.contact-link:visited {
+      color: #ffffff !important;
+      text-decoration: underline;
+      text-underline-offset: 4px;
     }
-
-    .steam-embed iframe {
-      display: block;
-      vertical-align: top;
-      margin: 0;
-      padding: 0;
-      line-height: 0;
-      width: 100%;
-      height: 190px;
-      border: none;
-      border-radius: 15px;
+    a.contact-link:hover {
+      color: #cccccc !important;
     }
-
-    .video-container {
-      position: relative;
-      width: 90%;               /* responsive width */
-      max-width: 720px;         /* reasonable desktop limit */
-      margin: 0 auto 2rem auto; /* center + spacing below */
-      border-radius: 12px;
-      overflow: hidden;
-      background: #000;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.45);
-      aspect-ratio: 16 / 9;
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
+    .down-arrow {
+      transition: opacity 0.4s ease, background-color 0.3s, transform 0.3s;
     }
-
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: block;
-    }
-
-    .video-container.in-view {
-      opacity: 1;
-      transform: none;
+    .down-arrow.hidden {
+      opacity: 0 !important;
+      pointer-events: none !important;
     }
   </style>
 </head>
-<body>
+<body data-base="">
   <div class="background-container">
     <canvas id="particle-canvas" aria-hidden="true"></canvas>
     <div class="background-overlay">
@@ -69,8 +38,23 @@
   </div>
 
   <main>
+    <!-- Awards Strip -->
+    <section class="awards-section reveal" aria-labelledby="awards-title">
+      <h2 id="awards-title" class="awards-title">Awards</h2>
+      <div class="awards">
+        <img class="award-laurel" src="Images/Laurel1.png" alt="Festival laurel">
+        <img class="award-laurel" src="Images/Laurel2.png" alt="Festival laurel">
+        <img class="award-laurel" src="Images/v8-fiat-ludum-2026-first-place.png" alt="Fiat Ludum 2026 First Place">
+        <img class="award-laurel" src="Images/v8-fiat-ludum-2026-community-choice.png" alt="Fiat Ludum 2026 Community Choice">
+        <img class="award-laurel" src="Images/v8-fiat-ludum-2025-second-place.png" alt="Fiat Ludum 2025 Second Place">
+        <img class="award-laurel" src="Images/v8-fiat-ludum-2025-best-sound.png" alt="Fiat Ludum 2025 Best Sound">
+        <img class="award-laurel" src="Images/v3-congressional-second-place-2023.png" alt="Congressional App Challenge 2023 Second Place">
+        <img class="award-laurel" src="Images/v3-gdoc-official-selection-2023.png" alt="Game Devs of Color 2023 Official Selection">
+      </div>
+    </section>
+
     <!-- Demo Reel Section -->
-    <h2>Demo Reel:</h2>
+    <h2>Demo Reel</h2>
     <div class="video-container in-view">
       <iframe
         src="https://www.youtube.com/embed/lc2y1Ep06K4?si=9OqEPPZvyGFoApN9"
@@ -82,407 +66,220 @@
     </div>
 
     <h2 class="section-title">Large Projects</h2>
-
-    <!-- Game 1: Node Strike -->
-    <div class="game-section">
-      <h3>Node Strike: Procedurally Generated Puzzle-Combat (solo project)</h3>
-      <div style="margin: 20px;">
-        <iframe
-          width="320"
-          height="180"
-          src="https://www.youtube.com/embed/T4BDZkkZMqg"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="steam-embed">
-        <iframe
-          src="https://store.steampowered.com/widget/3639030/"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <div class="with-media">
-        <p>Node Strike is a 3D combat-puzzle game where you defeat enemies by solving puzzles.
-          My goal was to make a game with infinite replayability that makes the player think critically under time pressure.
-          This required inventing a brand new type of puzzle and an algorithm to generate them.
-          I've been working on Node Strike for about 2 years and plan to release it soon.
-          The game is about 3 hours long with 22 levels, 5 multi-stage boss fights, 12 puzzle types, and 12 enemy types.</p>
-        <div class="media">
-          <img src="Gifs/Nodestrikeaction.gif" alt="Node Strike combat gameplay">
-          <img src="Gifs/Nodestrikemap.gif" alt="Node Strike level map">
+    <div class="project-grid">
+      <article class="project-card">
+        <h3><a class="card-link" href="nodestrike.html">Node Strike: Procedurally Generated Puzzle-Combat (solo project)</a></h3>
+        <div class="steam-embed card-embed">
+          <iframe data-src="https://store.steampowered.com/widget/3639030/" title="Node Strike: Procedurally Generated Puzzle-Combat (solo project)" tabindex="-1"></iframe>
         </div>
-      </div>
+        <ul class="card-bullets">
+          <li>Designed and programmed a procedural puzzle generation algorithm</li>
+          <li>Grey-boxed, tested, and iterated on 22 levels (balancing pacing and difficulty curves)</li>
+          <li>Created 12 enemy types including 5 multi-phase boss fights</li>
+          <li>Implemented environmental puzzles and platforming mechanics</li>
+        </ul>
+      </article>
 
-      <h4 class="tech-art-heading">Designing a New Type of Puzzle Game</h4>
-      <div class="tech-art-pair">
-        <img src="Images/ss_208717b5d3a6d49df2d1f5bbebadf7b378838522.600x338.jpg" alt="Node Strike puzzle">
-        <img src="Images/ss_f3785ff745936edecf7b8b2012fa5a2332266298.600x338.jpg" alt="Node Strike puzzle during combat">
-      </div>
-      <p>In high school I participated in Academic Quiz Bowl. The questions were long paragraphs that gave increasingly direct clues towards the answer.
-        I fell in love with the feeling of solving the clues and buzzing in as soon as I knew the answer, and I wanted to convey this feeling in a game.
-        I knew replicating this would require a nearly infinite number of quick puzzles.
-        My goal was to encourage a playstyle that made the player feel smart each time they solved one.
-        I decided to frame these puzzles as enemies in a 3rd-person action game so I could use movement and enemy attacks to put pressure on the player instead of using a timer.
-        I designed levels to slowly introduce these complex mechanics.
-        I also designed light platforming and environmental puzzle solving to break up the high-pressure combat encounters and boss fights.
-      </p>
+      <article class="project-card">
+        <h3><a class="card-link" href="boabf.html">Blood on a Bird's Foot 새발의피 (codirector, cowriter, programmer)</a></h3>
+        <div class="card-row">
+          <div class="card-covers">
+            <img class="card-cover" src="Images/VerticalCover.png" alt="Blood on a Bird's Foot poster">
+            <img class="card-cover" src="Images/Art/BOABFhumvee.png" alt="Blood on a Bird's Foot humvee still">
+          </div>
+          <div class="award-row">
+            <img class="award-laurel" src="Images/Laurel1.png" alt="Festival laurel">
+            <img class="award-laurel" src="Images/Laurel2.png" alt="Festival laurel">
+          </div>
+        </div>
+        <ul class="card-bullets">
+          <li>Designed cinematic set pieces with crowd simulations and procedural urban environment generation</li>
+          <li>Brainstormed, cowrote, and storyboarded a story that explores social injustice in South Korea</li>
+          <li>Used Unreal Engine to animate and render scenes and Adobe Premiere to edit sequences</li>
+          <li>Worked with a cinematographer and 3D artist to perfect the visual style of the film</li>
+          <li>Was selected for 2 film festivals: The Americas Film Festival NY - TAFFNY, First-Time Filmmaker Sessions Volume 12</li>
+        </ul>
+      </article>
 
-      <h4 class="tech-art-heading">Writing a Procedural Puzzle Generator</h4>
-      <p>Using graph theory, I built a unique puzzle-combat system that tests the player’s ability to think critically under pressure.
-        To solve a puzzle, the player must find the correct order to destroy every node such that the next node they destroy is in the direction indicated by the symbol.
-        During gameplay the player must dodge attacks while solving the puzzle in their head.
-        Once they think they have the solution, they can jump in and try it out.
-        The algorithm that generates these puzzles begins with the solution, the last node destroyed, and then iteratively fills in the puzzle backwards, ensuring that puzzles are always solvable.
-      </p>
+      <article class="project-card">
+        <h3><a class="card-link" href="brokenpeaces.html">Broken Peaces (lead mechanic/level designer, programmer, writer)</a></h3>
+        <div class="card-row">
+          <div class="steam-embed card-embed">
+            <iframe frameborder="0" width="552" height="167" data-src="https://itch.io/embed/4472608" data-priority="true" title="Broken Peaces (lead mechanic/level designer, programmer, writer)" tabindex="-1"></iframe>
+          </div>
+          <div class="award-row">
+            <img class="award-laurel" src="Images/v8-fiat-ludum-2026-first-place.png" alt="Fiat Ludum 2026 First Place">
+            <img class="award-laurel" src="Images/v8-fiat-ludum-2026-community-choice.png" alt="Fiat Ludum 2026 Community Choice">
+          </div>
+        </div>
+        <ul class="card-bullets">
+          <li>Led a team of 5 (including a concept artist, 3D artist, animator, and programmer) to win 1st Place at UCLA's 2026 Fiat Ludum Game Jam</li>
+          <li>Designed 3 multi-section levels that each introduce new movement mechanics</li>
+          <li>Designed and programmed unique dual-purpose abilities that each double as a platforming and combat option</li>
+          <li>Wrote a deep narrative about potential global effects of nuclear war</li>
+        </ul>
+      </article>
+
+      <article class="project-card">
+        <h3><a class="card-link" href="innerdemons.html">The Inner Demons (solo project)</a></h3>
+        <div class="card-row">
+          <div class="steam-embed card-embed">
+            <iframe data-src="https://store.steampowered.com/widget/2472230/" title="The Inner Demons (solo project)" tabindex="-1"></iframe>
+          </div>
+          <div class="award-row">
+            <img class="award-laurel" src="Images/v3-gdoc-official-selection-2023.png" alt="Game Devs of Color 2023 Official Selection">
+          </div>
+        </div>
+        <ul class="card-bullets">
+          <li>Created a complex cinematic camera system that dynamically cuts to frame the action</li>
+          <li>Built level building tools to help me create rooms, doorways, and hallways</li>
+          <li>Designed a horror game environment with set pieces, hazards, environmental puzzles, and a stalker enemy</li>
+          <li>Was featured in the 2023 Game Devs of Color Expo</li>
+        </ul>
+      </article>
+
+      <article class="project-card">
+        <h3><a class="card-link" href="terminalv.html">Terminal V Tech Demo (solo project)</a></h3>
+        <div class="card-row">
+          <div class="steam-embed card-embed">
+            <iframe data-src="https://store.steampowered.com/widget/2656230/" title="Terminal V Tech Demo (solo project)" tabindex="-1"></iframe>
+          </div>
+          <div class="award-row">
+            <img class="award-laurel" src="Images/v3-congressional-second-place-2023.png" alt="Congressional App Challenge 2023 Second Place">
+          </div>
+        </div>
+        <ul class="card-bullets">
+          <li>Created 2 mouse-based movement schemes that explore speedster movement mechanics</li>
+          <li>Designed 5 levels to introduce properties of the movement scheme</li>
+          <li>Won 2nd Place at the 2023 Congressional App Challenge for District 36</li>
+        </ul>
+      </article>
+
+      <article class="project-card">
+        <h3><a class="card-link" href="thereflection.html">The Reflection (solo project)</a></h3>
+        <div class="steam-embed card-embed">
+          <iframe data-src="https://store.steampowered.com/widget/1922540/" title="The Reflection (solo project)" tabindex="-1"></iframe>
+        </div>
+        <ul class="card-bullets">
+          <li>Created a retroreflective system that replicates all geometry, enemy movement, and projectiles upside down under a plane of water</li>
+          <li>Implemented collectibles and stage hazards that require the player to travel into the reflection</li>
+          <li>Designed 10 levels with platforming/combat challenge that take advantage of the reflection mechanic</li>
+        </ul>
+      </article>
     </div>
 
-    <!-- Game 2: Blood on a Bird's Foot -->
-    <div class="game-section boabf-section">
-      <h3>Blood on a Bird's Foot 새발의피 (codirector, cowriter, lead programmer)</h3>
-      <p>Blood on a Bird's Foot is a short film animated using Blender and Unreal Engine in collaboration with 8k Productions.</p>
-      <div class="image-container">
-        <img src="Images/Laurel1.png" alt="Festival laurel">
-        <img src="Images/Laurel2.png" alt="Festival laurel">
-      </div>
-
-      <style>
-        .image-container {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 15px;
-          margin: 20px auto;
-        }
-
-        .image-container img {
-          width: 250px;
-          max-width: 40%;
-          height: auto;
-        }
-      </style>
-
-      <div class="video-container in-view">
-        <iframe
-          src="https://www.youtube.com/embed/OVAvkVXA-c0?si=lvhAT5IqveY0Ac80"
-          title="Blood on a Bird's Foot (새발의피) Trailer"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <p>For Blood on a Bird's Foot, I explored social injustice in South Korea through a fictional story that focuses on one riot police officer during a war. I experimented with unique animation styles, blending cel shading with painting-like texture overlays. For larger shots I developed a procedural city generation algorithm and built simulations for the riot scenes.</p>
-
-      <h4 class="tech-art-heading">Stylized Comic Book Look</h4>
-      <div class="boabf-wrap boabf-wrap-face">
-        <img class="boabf-face" src="Images/Art/BOABFFAce.png" alt="Character look-dev still">
-        <p>Blood on a Bird's Foot deals with intense social topics such as nuclear war and police brutality.
-        As lead tech artist, I was faced with the challenge of creating stylized visuals that fit the tone and themes of the film.
-        I settled on a mix of cel shading and a high-contrast monotone color scheme.
-        Using the custom depth pass, I isolated organic components like skin, hair, and eyes, and applied cel shading and a custom LUT.
-        This separated the main character from the background, emphasizing the themes of isolation.
-        The environment visuals were fine-tuned with a combination of chromatic aberration, bloom, and fog.
-        Together these elements provided a comic book-esque visual that set an atmosphere consistent with the serious subject matter.</p>
-      </div>
-
-      <div class="boabf-wrap boabf-wrap-stills">
-        <img src="Images/Art/BOABFBodies.png" alt="Riot scene still">
-        <img src="Images/Art/BOABFhumvee.png" alt="Vehicle still">
-      </div>
+<!-- Small Projects Section -->
+<div class="project-grid">
+  <article class="project-card small-projects-card">
+    <h3><a class="card-link" href="small-projects.html">More Projects</a></h3>
+    <div class="card-gifs">
+      <img src="Gifs/hanhee2.gif" alt="Hanhee gameplay">
+      <img src="Gifs/snowmanroadkill.gif" alt="Snowman Roadkill Simulator gameplay">
+      <img src="Gifs/boringdeskjob.gif" alt="Boring Desk Job Simulator gameplay">
+      <img src="Gifs/dino%20tower.gif" alt="Dino Tower gameplay">
+      <img src="Gifs/goofyfish.gif" alt="The Exceptionally Goofy Fish gameplay">
+      <img src="Gifs/head2head.gif" alt="Head2Head gameplay">
     </div>
+  </article>
+</div>
 
-    <!-- Game 3: Broken Peaces -->
-    <div class="game-section">
-      <h3>Broken Peaces: Game Jam Winner (lead programmer, lead mechanic/level designer, lead writer)</h3>
-      <p>This is the trailer for Broken Peaces, which won 1st place and community choice at UCLA's 2026 Fiat Ludum Game Jam.</p>
 
-      <div style="margin: 20px;">
-        <iframe
-          width="320"
-          height="180"
-          src="https://www.youtube.com/embed/tT6s56HwwCU?si=5Jrd66tMrl5LWAnN"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="steam-embed">
-        <iframe
-          src="https://itch.io/embed/4472608"
-          allowfullscreen>
-        </iframe>
-      </div>
-
-      <div class="with-media">
-        <p>Broken Peaces is a game that explores the horrors of nuclear war and won 1st Place at the 2026 UCLA Fiat Ludum Game Jam (as well as Community Choice).
-          As team lead, I collaborated closely with our diverse team, which enhanced not only the development process but also the narrative.
-          In Broken Peaces, you play as three characters across different time periods in Korea, India, and China, reflecting the cultural backgrounds of our team members.
-          The game is voice acted in 3 languages, contains 2D painted cutscenes, and samples real instruments and singing in the music.</p>
-        <div class="media">
-          <img src="Gifs/broken-peaces-20-28s.gif" alt="Broken Peaces gameplay">
-        </div>
-      </div>
-
-      <h4 class="tech-art-heading">Conflict Resolution Through a Unified Vision</h4>
-      <div class="tech-art-pair">
-        <img src="Images/Art/BrokenPeacesChina.png" alt="Broken Peaces China scene">
-        <img src="Images/Untitled_-_April_13_2026_13.48.47.png" alt="Broken Peaces screenshot">
-      </div>
-      <p>I served as the lead programmer, lead mechanic/level designer, and lead writer, but all team members contributed to each area of the game.
-        Before we started development, our team got together and decided on a unified vision: scale.
-        We wanted every part of the game to feel larger.
-        This gave us a framework to solve disagreements when development began.
-        For example, one team member wanted to have players travel inside buildings during gameplay.
-        Together, we made a pros and cons list based on how the mechanic fit with the unified vision.
-        A pro is that going inside buildings makes the world narrative feel bigger, but a con is that it slows down gameplay, which could harm the scale of the levels.
-        Our solution was to have cutscenes that showed important indoor narrative scenes (like a character remembering the death of his mother),
-        which allowed us to keep the pros of the idea while removing the cons.
-      </p>
-    </div>
-
-    <!-- Game 4: The Inner Demons -->
-    <div class="game-section">
-      <h3>The Inner Demons (solo project)</h3>
-      <div class="steam-embed">
-        <iframe
-          src="https://store.steampowered.com/widget/2472230/"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <div class="with-media">
-        <p>For The Inner Demons, I wanted to blur the lines between video games and cinema. By using a unique room-based control scheme, my camera system can film the game with cinematic angles. The result is a tense movie-like experience that feels distinct from any other horror game.</p>
-        <div class="media">
-          <img src="Gifs/innerdemons.gif" alt="The Inner Demons gameplay">
-        </div>
-      </div>
-
-      <h4 class="tech-art-heading">Designing a Cinematic Game</h4>
-      <div class="tech-art-pair">
-        <img src="Images/Art/InnerDemonsWide.jpg" alt="The Inner Demons found footage look">
-        <img src="Images/Art/InnerDemons2.jpg" alt="The Inner Demons second scene with the found footage post process">
-      </div>
-      <p>I love movies and have always felt that games that try to emulate them tend to fall slightly short.
-        As an experiment, I wanted to create a cinematic camera in a game that dynamically framed the action.
-        This required designing an entirely new movement system, as typical third-person controls or tank controls would be confusing with a frequently cutting camera.
-        To solve this, I tied movement to key points around the room and displayed these points on an in-game compass.
-        When put together with a stalking enemy character who seeks out the player in an interconnected level, The Inner Demons delivers a unique experience
-        that feels like an old horror movie.
-      </p>
-
-      <h4 class="tech-art-heading">Found Footage Horror Post Process</h4>
-      <p>For my cinematic horror game The Inner Demons, I created a found footage post process material.
-        This shader was more of a color grading exercise than a technical shader, but it taught me
-        a lot about the Unreal camera system.
-        A mix of value manipulation through LUTs, film grain, and chromatic aberration gave the perfect blend for a creepy old school found footage movie.
-      </p>
-    </div>
-
-    <!-- Game 5: Terminal V -->
-    <div class="game-section">
-      <h3>Terminal V Tech Demo (solo project)</h3>
-      <div class="steam-embed">
-        <iframe
-          src="https://store.steampowered.com/widget/2656230/"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <div class="with-media">
-        <p>For Terminal V, my goal was to experiment with alternative player movement systems. By using the mouse to control the character’s position (rather than WASD to control velocity), players get to experience what it’s like to be a speedster with almost no limits, something that games have historically struggled to convey.</p>
-        <div class="media">
-          <img src="Gifs/hanhee1.gif" alt="Terminal V gameplay">
-        </div>
-      </div>
-
-      <h4 class="tech-art-heading">Designing a Unique Movement Scheme</h4>
-      <div class="tech-art-pair">
-        <img src="Images/ss_c26ba4ecfa49aed969d340c4d8822034fa1cc249.600x338.jpg" alt="Terminal V gameplay">
-        <img src="Images/ss_24bc33ee7c980a958b8a0e7a8d928ee4cb1b96d6.600x338.jpg" alt="Terminal V gameplay">
-      </div>
-      <p>It makes sense why the vast majority of modern games have the same controls (WASD and mouse): they're intuitive and easy for beginners to learn.
-        However, when I thought more about this, I realized unique control schemes would open new design space for action games.
-        I thought about other intuitive control schemes and remembered those old mouse mazes I used to play as a kid.
-        The precision and speed of mouse movements afforded a level of control I hadn't seen in many games.
-        I realized this would be the perfect control scheme for playing as a speedster.
-        Terminal V explores how incredibly fast and granular movement controls can create interesting combat and platforming situations.
-      </p>
-    </div>
-
-    <!-- Game 6: The Reflection -->
-    <div class="game-section">
-      <h3>The Reflection (solo project)</h3>
-      <div class="steam-embed">
-        <iframe
-          src="https://store.steampowered.com/widget/1922540/"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <div class="with-media">
-        <p>For The Reflection, I tried to explore spaces that wouldn’t be possible in real life. I settled on a retroreflective space that mirrors the geometry across a plane. This allows for interesting combat and platforming scenarios that would not be possible in a traditional game space.</p>
-        <div class="media">
-          <img src="Gifs/reflection1.gif" alt="The Reflection gameplay">
-          <img src="Gifs/reflection2.gif" alt="The Reflection mirrored geometry gameplay">
-        </div>
-      </div>
-
-      <h4 class="tech-art-heading">Stylized Mind-Bending Geometry</h4>
-      <div class="tech-art-pair">
-        <img src="Images/Art/Reflection.jpg" alt="Mirrored retroreflective space in The Reflection">
-        <img src="Images/Art/Reflection2.jpg" alt="Second view of the reflected geometry in The Reflection">
-      </div>
-      <p>The Reflection was my first Steam release and explores impossible retroreflective geometry.
-        I liked the idea of jumping into a reflection to shoot an enemy who was previously behind a shield on the ground but is now reflected on the ceiling (where the shield no longer breaks line of sight).
-        Creating levels for this game required replicating all level geometry, enemy movements, and projectiles across a plane.
-        For moving objects, I used dynamic mesh slicing to create a convincing reflection visual.
-        An HLSL outline shader, stylized water material, and vibrant colors create a surreal environment that complements the mind-bending gameplay.
-      </p>
-    </div>
-
-    <!-- Ink Painting Shader (my latest game, no page of its own yet) -->
-    <div class="game-section">
-      <h3>Ink Painting Shader</h3>
-      <div class="tech-art-image">
-        <img src="Images/Art/Watercolor.png" alt="Ink painting shader render">
-      </div>
-      <p>For my latest game I've been working on an ink painting shader.
-        It uses a variety of techniques to give the world a painted look.
-        The material of each object uses a local-space aligned repeating paint texture I created in GIMP.
-        For skeletal meshes, the UVs use pre-skinned local-space so the mesh can deform without warping the texture.
-        The material also uses two layers of cel shading, one for shadows and one for highlights, and a Fresnel node multiplied with the painted texture gives the "erosion" effect around the edges.
-        Lastly, I made a post-process material consisting of an HLSL outline shader multiplied with a scrolling noise texture to create ink strokes of varying thickness.
-      </p>
-    </div>
-
-    <h2 class="section-title">Small Projects</h2>
-
-    <div class="game-section">
-      <h3>Hanhee (lead programmer, lead mechanic/level designer)</h3>
-      <div class="with-media embed-row">
-        <div class="steam-embed">
-          <iframe
-            src="https://itch.io/embed/3474736"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <div class="media">
-          <img src="Gifs/hanhee2.gif" alt="Hanhee gameplay">
-        </div>
-      </div>
-    </div>
-
-    <div class="game-section">
-      <h3>Snowman Roadkill Simulator (solo project)</h3>
-      <div class="with-media embed-row">
-        <div class="steam-embed">
-          <iframe
-            src="https://itch.io/embed/3212115"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <div class="media">
-          <img src="Gifs/snowmanroadkill.gif" alt="Snowman Roadkill Simulator gameplay">
-        </div>
-      </div>
-    </div>
-
-    <div class="game-section">
-      <h3>Boring Desk Job Simulator (solo project)</h3>
-      <div class="with-media embed-row">
-        <div class="steam-embed">
-          <iframe
-            src="https://itch.io/embed/3114310"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <div class="media">
-          <img src="Gifs/boringdeskjob.gif" alt="Boring Desk Job Simulator gameplay">
-        </div>
-      </div>
-    </div>
-
-    <div class="game-section">
-      <h3>Dino Tower (lead programmer/designer)</h3>
-      <div class="with-media embed-row">
-        <div class="steam-embed">
-          <iframe
-            src="https://itch.io/embed/2907540"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <div class="media">
-          <img src="Gifs/dino%20tower.gif" alt="Dino Tower gameplay">
-        </div>
-      </div>
-    </div>
-
-    <div class="game-section">
-      <h3>The Exceptionally Goofy Fish (solo project)</h3>
-      <div class="with-media embed-row">
-        <div class="steam-embed">
-          <iframe
-            src="https://itch.io/embed/2154535"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <div class="media">
-          <img src="Gifs/goofyfish.gif" alt="The Exceptionally Goofy Fish gameplay">
-        </div>
-      </div>
-    </div>
-
-    <div class="game-section">
-      <h3>Random Object Spinulator (solo project)</h3>
-      <div class="with-media embed-row">
-        <div class="steam-embed">
-          <iframe
-            src="https://itch.io/embed/1618935"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <div class="media">
-          <img src="Gifs/randomobjectspinulator.gif" alt="Random Object Spinulator gameplay">
-        </div>
-      </div>
-    </div>
-
-    <div class="game-section">
-      <h3>Slidefall (solo project)</h3>
-      <div class="with-media embed-row">
-        <div class="steam-embed">
-          <iframe
-            src="https://itch.io/embed/1323792"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <div class="media">
-          <img src="Gifs/slidefall-combined.gif" alt="Slidefall gameplay">
-        </div>
-      </div>
-    </div>
-
-    <div class="game-section">
-      <h3>Head2Head (solo project)</h3>
-      <div class="with-media embed-row">
-        <div class="steam-embed">
-          <iframe
-            src="https://itch.io/embed/1080850"
-            allowfullscreen>
-          </iframe>
-        </div>
-        <div class="media">
-          <img src="Gifs/head2head.gif" alt="Head2Head gameplay">
-        </div>
-      </div>
-    </div>
+    <h2 class="section-title">Contact</h2>
+    <p><a class="contact-link" style="color:#ffffff" href="mailto:danieltrit310@gmail.com">danieltrit310@gmail.com</a></p>
   </main>
 
   <script src="script.js"></script>
   <script src="reveal.js"></script>
+  <script src="embeds.js"></script>
+  <script>
+    // hide the down arrow once the page has been scrolled
+    (function () {
+      var arrow = document.querySelector('.down-arrow');
+      if (!arrow) return;
+      function update() {
+        var y = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var gone = y > 40;
+        arrow.classList.toggle('hidden', gone);
+        arrow.style.opacity = gone ? '0' : '';
+        arrow.style.pointerEvents = gone ? 'none' : '';
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      document.addEventListener('scroll', update, { passive: true });
+      update();
+    })();
+  </script>
+  <script>
+    // Remember and restore scroll position seamlessly without fighting user input
+    (function () {
+      var KEY = 'indexScrollY';
+
+      function saveScroll() {
+        if (restoring) return;
+        var y = window.pageYOffset || document.documentElement.scrollTop || 0;
+        sessionStorage.setItem(KEY, String(Math.round(y)));
+      }
+
+      document.addEventListener('click', function (e) {
+        if (e.target.closest('a')) saveScroll();
+      });
+      window.addEventListener('pagehide', saveScroll);
+      window.addEventListener('beforeunload', saveScroll);
+
+      var scrollTimer;
+      window.addEventListener('scroll', function () {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(saveScroll, 100);
+      }, { passive: true });
+
+      var saved = sessionStorage.getItem(KEY);
+      if (!saved) return;
+
+      var targetY = parseInt(saved, 10);
+      if (isNaN(targetY) || targetY <= 0) return;
+
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+
+      var restoring = true;
+      var intervalId = null;
+
+      function cancelRestoration() {
+        if (!restoring) return;
+        restoring = false;
+        if (intervalId) clearInterval(intervalId);
+        window.removeEventListener('wheel', cancelRestoration);
+        window.removeEventListener('touchmove', cancelRestoration);
+        window.removeEventListener('keydown', cancelRestoration);
+        window.removeEventListener('mousedown', cancelRestoration);
+      }
+
+      window.addEventListener('wheel', cancelRestoration, { passive: true });
+      window.addEventListener('touchmove', cancelRestoration, { passive: true });
+      window.addEventListener('keydown', cancelRestoration, { passive: true });
+      window.addEventListener('mousedown', cancelRestoration, { passive: true });
+
+      function applyScroll() {
+        if (!restoring) return;
+        window.scrollTo(0, targetY);
+      }
+
+      applyScroll();
+      document.addEventListener('DOMContentLoaded', applyScroll);
+
+      window.addEventListener('load', function () {
+        applyScroll();
+        var attempts = 0;
+        intervalId = setInterval(function () {
+          attempts++;
+          if (attempts >= 6 || !restoring) {
+            cancelRestoration();
+          } else {
+            applyScroll();
+          }
+        }, 250);
+      });
+    })();
+  </script>
 </body>
 </html>

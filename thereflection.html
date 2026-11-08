@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Reflection | dtritgamedev</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="project-page" data-base="">
+  <div class="background-container">
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+    <div class="background-overlay"></div>
+  </div>
+
+  <main>
+    <nav class="back-row"><a class="back-link" href="index.html">&larr; All Projects</a></nav>
+
+    <div class="game-section">
+      <h1 class="project-title">The Reflection (solo project)</h1>
+      <div class="steam-embed">
+        <iframe
+          data-src="https://store.steampowered.com/widget/1922540/"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="with-media">
+        <p>For The Reflection, I tried to explore spaces that wouldn’t be possible in real life. I settled on a retroreflective space that mirrors the geometry across a plane. This allows for interesting combat and platforming scenarios that would not be possible in a traditional game space.</p>
+        <div class="media">
+          <img src="Gifs/reflection1.gif" alt="The Reflection gameplay">
+          <img src="Gifs/reflection2.gif" alt="The Reflection mirrored geometry gameplay">
+        </div>
+      </div>
+
+      <h4 class="tech-art-heading">Stylized Mind-Bending Geometry</h4>
+      <div class="tech-art-pair">
+        <img src="Images/Art/Reflection.jpg" alt="Mirrored retroreflective space in The Reflection">
+        <img src="Images/Art/Reflection2.jpg" alt="Second view of the reflected geometry in The Reflection">
+      </div>
+      <p>The Reflection was my first Steam release and explores impossible retroreflective geometry.
+        I liked the idea of jumping into a reflection to shoot an enemy who was previously behind a shield on the ground but is now reflected on the ceiling (where the shield no longer breaks line of sight).
+        Creating levels for this game required replicating all level geometry, enemy movements, and projectiles across a plane.
+        For moving objects, I used dynamic mesh slicing to create a convincing reflection visual.
+        An HLSL outline shader, stylized water material, and vibrant colors create a surreal environment that complements the mind-bending gameplay.
+      </p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+  <script src="reveal.js"></script>
+  <script src="embeds.js"></script>
+</body>
+</html>
