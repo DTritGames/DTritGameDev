@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Node Strike | dtritgamedev</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Gif rows: equal-width columns that stack on narrow screens */
+    .gif-row {
+      display: grid;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .gif-row.two   { grid-template-columns: repeat(2, 1fr); }
+    .gif-row.three { grid-template-columns: repeat(3, 1fr); }
+    .gif-row img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 6px;
+    }
+    @media (max-width: 700px) {
+      .gif-row.two,
+      .gif-row.three { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body class="project-page" data-base="">
   <div class="background-container">
@@ -16,7 +36,10 @@
     <nav class="back-row"><a class="back-link" href="index.html">&larr; All Projects</a></nav>
 
     <div class="game-section">
+      <!-- 1. Title -->
       <h1 class="project-title">Node Strike: Procedurally Generated Puzzle-Combat (solo project)</h1>
+
+      <!-- 2. Trailer -->
       <div style="margin: 20px;">
         <iframe
           width="320"
@@ -30,25 +53,51 @@
         </iframe>
       </div>
 
+      <!-- 3. Steam embed -->
       <div class="steam-embed">
         <iframe
           data-src="https://store.steampowered.com/widget/3639030/"
           allowfullscreen>
         </iframe>
       </div>
-      <div class="with-media">
-        <p>Node Strike is a 3D combat-puzzle game where you defeat enemies by solving puzzles.
-          My goal was to make a game with infinite replayability that makes the player think critically under time pressure.
-          This required inventing a brand new type of puzzle and an algorithm to generate them.
-          I've been working on Node Strike for about 2 years and plan to release it soon.
-          The game is about 3 hours long with 22 levels, 5 multi-stage boss fights, 12 puzzle types, and 12 enemy types.</p>
-        <div class="media">
-          <img src="Gifs/Nodestrikeaction.gif" alt="Node Strike combat gameplay">
-          <img src="Gifs/Nodestrikemap.gif" alt="Node Strike level map">
-        </div>
+
+      <!-- 4. Completed-game gifs -->
+      <div class="gif-row two">
+        <img src="Gifs/Nodestrikeaction.gif" alt="Node Strike combat gameplay">
+        <img src="Gifs/Nodestrikemap.gif" alt="Node Strike level map">
       </div>
 
+      <!-- 5. Description -->
+      <p>Node Strike is a 3D combat-puzzle game where you defeat enemies by solving puzzles.
+        This required inventing a brand new type of puzzle and an algorithm to generate them.
+        The game is about 3 hours long with 22 levels, 5 multi-stage boss fights, 12 puzzle types, and 12 enemy types.</p>
+
+      <!-- 6. NSv1 prototype gifs -->
+      <div class="gif-row three">
+        <img src="Gifs/NSv1_enemies-interact.gif" alt="Node Strike prototype: enemies interacting">
+        <img src="Gifs/NSv1_slash-chase.gif" alt="Node Strike prototype: slash and chase">
+        <img src="Gifs/NSv1_sword-fight.gif" alt="Node Strike prototype: sword fight">
+      </div>
+
+      <!-- 7. Prototyping -->
+      <h4 class="tech-art-heading">Prototyping, Testing, and Iterating</h4>
+      <p>I built the first prototype of the puzzle-combat mechanic in about a month and invited all of my friends to try it out.
+        I already had a few ideas for variables to tweak, such as the time limit between destroying each node, the camera's FOV when showing the puzzles, and the aggressiveness of the enemies.
+        However, while watching my friends play (and taking detailed notes), I discovered two interactions I hadn't considered:</p><br>
+      <p>- Players would spend a long time studying an enemy from a distance while in no real danger.<br>
+        - Players would guess the solution to non-enemy puzzles so that the puzzle would reset and they would get an easier one.</p><br>
+      <p>Players tend to drift toward the optimal strategy even if it isn't fun, so I had to design the game so that the optimal strategy was my intended experience.
+        To do this, I added ranged attacks to the enemies to put pressure on the player and encourage them to solve the puzzle faster.
+        I also tuned encounters to include more enemies, making it harder to just study one from a distance.
+        To solve the guessing problem, I gave non-enemy puzzles a three-second delay before resetting.
+        This subtle change made guessing much less optimal and encouraged players to solve each puzzle on the first try.
+        I learned that it's the developer's responsibility to guide players toward the most fun playstyle and to prevent boring optimal strategies.</p>
+
+
+
+      <!-- 9. Designing -->
       <h4 class="tech-art-heading">Designing a New Type of Puzzle Game</h4>
+            <!-- 8. Screenshots -->
       <div class="tech-art-pair">
         <img src="Images/ss_208717b5d3a6d49df2d1f5bbebadf7b378838522.600x338.jpg" alt="Node Strike puzzle">
         <img src="Images/ss_f3785ff745936edecf7b8b2012fa5a2332266298.600x338.jpg" alt="Node Strike puzzle during combat">
@@ -62,6 +111,7 @@
         I also designed light platforming and environmental puzzle solving to break up the high-pressure combat encounters and boss fights.
       </p>
 
+      <!-- 10. Procedural generator -->
       <h4 class="tech-art-heading">Writing a Procedural Puzzle Generator</h4>
       <p>Using graph theory, I built a unique puzzle-combat system that tests the player’s ability to think critically under pressure.
         To solve a puzzle, the player must find the correct order to destroy every node such that the next node they destroy is in the direction indicated by the symbol.
