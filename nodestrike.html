@@ -6,7 +6,7 @@
   <title>Node Strike | dtritgamedev</title>
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Gif rows: equal-width columns that stack on narrow screens */
+    /* Gif/image rows: equal-width columns that stack on narrow screens */
     .gif-row {
       display: grid;
       gap: 12px;
@@ -36,10 +36,10 @@
     <nav class="back-row"><a class="back-link" href="index.html">&larr; All Projects</a></nav>
 
     <div class="game-section">
-      <!-- 1. Title -->
+      <!-- Title -->
       <h1 class="project-title">Node Strike: Procedurally Generated Puzzle-Combat (solo project)</h1>
 
-      <!-- 2. Trailer -->
+      <!-- Trailer -->
       <div style="margin: 20px;">
         <iframe
           width="320"
@@ -53,7 +53,7 @@
         </iframe>
       </div>
 
-      <!-- 3. Steam embed -->
+      <!-- Steam embed -->
       <div class="steam-embed">
         <iframe
           data-src="https://store.steampowered.com/widget/3639030/"
@@ -61,31 +61,32 @@
         </iframe>
       </div>
 
-      <!-- 4. Completed-game gifs -->
+      <!-- Completed-game gifs -->
       <div class="gif-row two">
         <img src="Gifs/Nodestrikeaction.gif" alt="Node Strike combat gameplay">
         <img src="Gifs/Nodestrikemap.gif" alt="Node Strike level map">
       </div>
 
-      <!-- 5. Description -->
+      <!-- Description -->
       <p>Node Strike is a 3D combat-puzzle game where you defeat enemies by solving puzzles.
         This required inventing a brand new type of puzzle and an algorithm to generate them.
         The game is about 3 hours long with 22 levels, 5 multi-stage boss fights, 12 puzzle types, and 12 enemy types.</p>
 
-      <!-- 6. NSv1 prototype gifs -->
-      <div class="gif-row three">
+      <!-- NSv1 prototype gifs -->
+
+
+      <!-- Prototyping -->
+      <h4 class="tech-art-heading">Prototyping, Testing, and Iterating</h4>
+            <div class="gif-row three">
         <img src="Gifs/NSv1_enemies-interact.gif" alt="Node Strike prototype: enemies interacting">
         <img src="Gifs/NSv1_slash-chase.gif" alt="Node Strike prototype: slash and chase">
         <img src="Gifs/NSv1_sword-fight.gif" alt="Node Strike prototype: sword fight">
       </div>
-
-      <!-- 7. Prototyping -->
-      <h4 class="tech-art-heading">Prototyping, Testing, and Iterating</h4>
       <p>I built the first prototype of the puzzle-combat mechanic in about a month and invited all of my friends to try it out.
         I already had a few ideas for variables to tweak, such as the time limit between destroying each node, the camera's FOV when showing the puzzles, and the aggressiveness of the enemies.
-        However, while watching my friends play (and taking detailed notes), I discovered two interactions I hadn't considered:</p><br>
+        However, while watching my friends play (and taking detailed notes), I discovered two interactions I hadn't considered:</p>
       <p>- Players would spend a long time studying an enemy from a distance while in no real danger.<br>
-        - Players would guess the solution to non-enemy puzzles so that the puzzle would reset and they would get an easier one.</p><br>
+        - Players would guess the solution to non-enemy puzzles so that the puzzle would reset and they would get an easier one.</p>
       <p>Players tend to drift toward the optimal strategy even if it isn't fun, so I had to design the game so that the optimal strategy was my intended experience.
         To do this, I added ranged attacks to the enemies to put pressure on the player and encourage them to solve the puzzle faster.
         I also tuned encounters to include more enemies, making it harder to just study one from a distance.
@@ -93,11 +94,28 @@
         This subtle change made guessing much less optimal and encouraged players to solve each puzzle on the first try.
         I learned that it's the developer's responsibility to guide players toward the most fun playstyle and to prevent boring optimal strategies.</p>
 
+      <!-- Designing puzzles and levels -->
+      <h4 class="tech-art-heading">Designing Puzzles and Levels</h4>
+      <div class="gif-row three">
+                <img src="Images/DesignImages/ddpuzzle.png" alt="Node Strike puzzle design">
+        <img src="Images/DesignImages/Paperideation.png" alt="Paper ideation for the puzzle generator">
 
+        <img src="Images/DesignImages/tutorial%20level.jpg" alt="Node Strike tutorial level">
+      </div>
+      <p>Using graph theory, I built a unique puzzle-combat system that tests the player’s ability to think critically under pressure.
+        To solve a puzzle, the player must find the correct order to destroy every node such that the next node they destroy is in the direction indicated by the symbol.
+        During gameplay the player must dodge attacks while solving the puzzle in their head.
+        Once they think they have the solution, they can jump in and try it out.
+        The algorithm that generates these puzzles begins with the solution, the last node destroyed, and then iteratively fills in the puzzle backwards, ensuring that puzzles are always solvable.</p>
+      <p>Teaching this system to the player was a challenge, because explaining a complex puzzle system all at once can be overwhelming.
+        Instead, I designed levels that slowly explained the whole system.
+        For example, in the first level, the player is shown a non-enemy puzzle that they must solve to proceed.
+        Failing this puzzle has no punishment. After this, they are presented with an easy enemy that is killed with the same system.
+        Next, the player is taught that they can zip to faraway puzzles and must demonstrate that they understand this to continue.
+        Lastly, the player is faced with multiple enemies and must use everything they learned to complete the level.</p>
 
-      <!-- 9. Designing -->
-      <h4 class="tech-art-heading">Designing a New Type of Puzzle Game</h4>
-            <!-- 8. Screenshots -->
+      <!-- Transforming a life experience -->
+      <h4 class="tech-art-heading">Transforming a Life Experience into a Game</h4>
       <div class="tech-art-pair">
         <img src="Images/ss_208717b5d3a6d49df2d1f5bbebadf7b378838522.600x338.jpg" alt="Node Strike puzzle">
         <img src="Images/ss_f3785ff745936edecf7b8b2012fa5a2332266298.600x338.jpg" alt="Node Strike puzzle during combat">
@@ -108,17 +126,19 @@
         My goal was to encourage a playstyle that made the player feel smart each time they solved one.
         I decided to frame these puzzles as enemies in a 3rd-person action game so I could use movement and enemy attacks to put pressure on the player instead of using a timer.
         I designed levels to slowly introduce these complex mechanics.
-        I also designed light platforming and environmental puzzle solving to break up the high-pressure combat encounters and boss fights.
-      </p>
+        I also designed light platforming and environmental puzzle solving to break up the high-pressure combat encounters and boss fights.</p>
 
-      <!-- 10. Procedural generator -->
-      <h4 class="tech-art-heading">Writing a Procedural Puzzle Generator</h4>
-      <p>Using graph theory, I built a unique puzzle-combat system that tests the player’s ability to think critically under pressure.
-        To solve a puzzle, the player must find the correct order to destroy every node such that the next node they destroy is in the direction indicated by the symbol.
-        During gameplay the player must dodge attacks while solving the puzzle in their head.
-        Once they think they have the solution, they can jump in and try it out.
-        The algorithm that generates these puzzles begins with the solution, the last node destroyed, and then iteratively fills in the puzzle backwards, ensuring that puzzles are always solvable.
-      </p>
+      <!-- Lessons learned -->
+      <h4 class="tech-art-heading">Lessons Learned</h4>
+      <p>The biggest lesson I learned is that I am responsible for how the player behaves, even if the player chooses a playstyle that isn't fun.
+        If I have a vision for an experience I want to convey to the player, I need to design the mechanics and encounters so that
+        the optimal playstyle is the one that matches my vision.
+        This usually requires punishing players who try another playstyle (like cheesing or save-scumming) or nerfing boring playstyles to make them suboptimal.</p>
+      <p>I also learned about teaching complex mechanics to players.
+        When I observed playtesters struggling to understand the puzzle mechanic,
+        I designed levels that slowly introduced the puzzle system piece by piece.
+        Each piece is first introduced in a safe environment before being combined with other
+        pieces until the player understands the full system.</p>
     </div>
   </main>
 
