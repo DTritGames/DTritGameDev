@@ -1130,3 +1130,92 @@ a.contact-link:focus-visible {
     opacity: 0;
     pointer-events: none;
 }
+
+
+/* ---------- Itch embed + YouTube trailer side by side ---------- */
+.embed-pair {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 0 auto 30px auto;
+}
+
+/* override the itch min-width rule so the embed can shrink a little */
+.embed-pair .steam-embed,
+.embed-pair .steam-embed:has(iframe[data-src*="itch.io"]),
+.embed-pair .steam-embed:has(iframe[src*="itch.io"]) {
+    flex: 1 1 552px;
+    max-width: 552px;
+    min-width: 440px;
+    margin: 0;
+}
+
+.embed-pair .yt-embed {
+    flex: 1 1 297px;
+    min-width: 0;
+    max-width: 297px;
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.45);
+}
+
+.embed-pair .yt-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+/* only stack on phone-sized screens */
+@media (max-width: 700px) {
+    .embed-pair {
+        flex-direction: column;
+    }
+
+    .embed-pair .steam-embed,
+    .embed-pair .steam-embed:has(iframe[data-src*="itch.io"]),
+    .embed-pair .steam-embed:has(iframe[src*="itch.io"]) {
+        flex: 0 0 auto;
+        width: 100%;
+        min-width: 0;
+    }
+
+    .embed-pair .yt-embed {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 552px;
+    }
+}
+
+/* ---------- Three gifs side by side (never stacks) ---------- */
+.tech-art-trio {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 20px auto;
+}
+
+.tech-art-trio img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 480px) {
+    .tech-art-trio {
+        gap: 8px;
+    }
+
+    .tech-art-trio img {
+        border-radius: 8px;
+    }
+}

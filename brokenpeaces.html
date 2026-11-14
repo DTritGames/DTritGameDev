@@ -4,7 +4,83 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Broken Peaces | dtritgamedev</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=3" />
+  <style>
+    /* ---------- Itch embed + YouTube trailer side by side ---------- */
+    .embed-pair {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto 30px auto;
+    }
+
+    .embed-pair .steam-embed,
+    .embed-pair .steam-embed:has(iframe[data-src*="itch.io"]),
+    .embed-pair .steam-embed:has(iframe[src*="itch.io"]) {
+      flex: 1 1 552px;
+      max-width: 552px;
+      min-width: 0;
+      margin: 0;
+    }
+
+    .embed-pair .yt-embed {
+      flex: 0 1 297px;
+      min-width: 0;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.45);
+    }
+
+    .embed-pair .yt-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    @media (max-width: 700px) {
+      .embed-pair { flex-direction: column; }
+      .embed-pair .steam-embed,
+      .embed-pair .steam-embed:has(iframe[data-src*="itch.io"]),
+      .embed-pair .steam-embed:has(iframe[src*="itch.io"]) {
+        flex: 0 0 auto;
+        width: 100%;
+      }
+      .embed-pair .yt-embed {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 552px;
+      }
+    }
+
+    /* ---------- Three gifs side by side (never stacks) ---------- */
+    .tech-art-trio {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto 20px auto;
+    }
+
+    .tech-art-trio img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 15px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    @media (max-width: 480px) {
+      .tech-art-trio { gap: 8px; }
+      .tech-art-trio img { border-radius: 8px; }
+    }
+  </style>
 </head>
 <body class="project-page" data-base="">
   <div class="background-container">
@@ -19,25 +95,25 @@
       <h1 class="project-title">Broken Peaces (lead mechanic/level designer, programmer, writer)</h1>
       <p>This is the trailer for Broken Peaces, which won 1st place and community choice at UCLA's 2026 Fiat Ludum Game Jam.</p>
 
-      <div style="margin: 20px;">
-        <iframe
-          width="320"
-          height="180"
-          src="https://www.youtube.com/embed/tT6s56HwwCU?si=5Jrd66tMrl5LWAnN"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen>
-        </iframe>
-      </div>
+      <div class="embed-pair">
+        <div class="steam-embed">
+          <iframe
+            frameborder="0" width="552" height="167"
+            data-src="https://itch.io/embed/4472608"
+            allowfullscreen>
+          </iframe>
+        </div>
 
-      <div class="steam-embed">
-        <iframe
-          frameborder="0" width="552" height="167"
-          data-src="https://itch.io/embed/4472608"
-          allowfullscreen>
-        </iframe>
+        <div class="yt-embed">
+          <iframe
+            src="https://www.youtube.com/embed/tT6s56HwwCU?si=5Jrd66tMrl5LWAnN"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen>
+          </iframe>
+        </div>
       </div>
 
       <div class="with-media">
@@ -49,6 +125,25 @@
           <img src="Gifs/broken-peaces-20-28s.gif" alt="Broken Peaces gameplay">
         </div>
       </div>
+
+      <h4 class="tech-art-heading">Playtesting Complex Movement Mechanics</h4>
+      <div class="tech-art-trio">
+        <img src="Gifs/BPv2_bridge-crossing.gif" alt="Broken Peaces bridge crossing">
+        <img src="Gifs/BPv2_rooftop-brawl.gif" alt="Broken Peaces rooftop brawl">
+        <img src="Gifs/BPv2_rooftop-fight.gif" alt="Broken Peaces rooftop fight">
+      </div>
+      <p>After the team had settled on movement mechanic ideas we liked, I immediately began prototyping. 
+        Within an hour, I had made the first version of the dash attack. 
+        I had my teammates and friends try it out and give feedback.
+         As we slowly added more components (buildings, enemies, other mechanics, etc.), we retested the mechanic to make sure it fit well with the environment.
+      </p>
+      <p>
+For example, one major change I made was the length of the dash and the momentum after it finished. 
+The dash itself is just a timeline that sets the player's location to points along the path. 
+I noticed that many playtesters tried to chain the attack into another movement ability. 
+To aid this, I added a small physics impulse after the dash finishes that keeps the player soaring in an arc after the dash. 
+This allowed players to dash through one enemy and fluidly chain into the rocket launcher to keep their forward momentum.
+</p>
 
       <h4 class="tech-art-heading">Conflict Resolution Through a Unified Vision</h4>
       <div class="tech-art-pair">
@@ -65,6 +160,17 @@
         Our solution was to have cutscenes that showed important indoor narrative scenes (like a character remembering the death of his mother),
         which allowed us to keep the pros of the idea while removing the cons.
       </p>
+    
+            <h4 class="tech-art-heading">Lessons Learned</h4>
+      <p> Although it wasn't my first team project, Broken Peaces helped me really refine my teamwork skills.
+        Our team became better at communicating once we established a shared language (analyzing ideas relative to the unified vision).
+        As the team leader, I learned how to work with each team member to find the strengths and weaknesses of their ideas.
+        
+      </p>
+      <p>I also learned about playtesting and rapid iteration.
+        The immense time pressure required me to create prototypes in minutes and playtest efficiently.
+      I witnessed firsthand how playtesting can reveal interactions that are much more fun than anything I could think of on my own. 
+      Seeing how players behave with the tools they are given and adapting to their behavior is an integral part of game design.</p>
     </div>
   </main>
 
